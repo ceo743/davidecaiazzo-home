@@ -24,6 +24,26 @@
   <link rel="stylesheet" crossorigin href="./assets/index-BVWQVtXw.css">
 
 <style>
+/* ── Nav logo: never wrap ── */
+nav a.font-display,
+nav .font-display {
+  white-space: nowrap !important;
+  font-size: clamp(0.85rem, 1.5vw, 1.5rem) !important;
+  letter-spacing: 0.05em !important;
+}
+/* Disclaimer bar: smaller text */
+nav + div, nav ~ div:first-of-type {
+  font-size: clamp(0.65rem, 1vw, 0.8rem) !important;
+}
+/* ── Nav: intermediate widths (md→lg range) — usa hamburger ── */
+@media (min-width: 768px) and (max-width: 1100px) {
+  /* Mostra hamburger */
+  nav > div > button { display: flex !important; align-items: center; }
+  /* Nascondi link desktop */
+  nav > div > div { display: none !important; }
+}
+</style>
+<style>
 	@font-face {
 		font-family: 'CameraPlainVariable';
 		src: url('https://cdn.gpteng.co/mcp-widgets/v1/fonts/CameraPlainVariable.woff2') format('woff2');
@@ -240,6 +260,182 @@
 	</button>
 </aside>
 <script>
+/* ── Palchi e Istituzioni injection (lightbox) ───────────────────── */
+(function() {
+  var CSS = [
+    "@keyframes scrollEventi{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}",
+    ".dc-ev-track{display:flex;gap:20px;width:max-content;animation:scrollEventi 44s linear infinite}",
+    ".dc-ev-track:hover{animation-play-state:paused}",
+    ".dc-ev-card{width:320px;height:240px;flex-shrink:0;border-radius:20px;overflow:hidden;position:relative;cursor:pointer;box-shadow:0 8px 32px rgba(0,0,0,0.45);transition:transform 0.4s,box-shadow 0.4s}",
+    ".dc-ev-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 20px 56px rgba(0,0,0,0.65)}",
+    ".dc-ev-card::before{content:'';position:absolute;inset:0;border-radius:20px;border:1px solid rgba(255,255,255,0.07);z-index:3;pointer-events:none;transition:border-color 0.4s}",
+    ".dc-ev-card:hover::before{border-color:rgba(212,175,55,0.45)}",
+    ".dc-ev-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease}",
+    ".dc-ev-card:hover img{transform:scale(1.1)}",
+    ".dc-ev-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.28) 55%,transparent 100%);z-index:1}",
+    ".dc-ev-label{position:absolute;bottom:0;left:0;right:0;padding:36px 18px 18px;z-index:2}",
+    ".dc-ev-bar{width:24px;height:2px;background:linear-gradient(90deg,#d4af37,#f0d070);border-radius:1px;margin-bottom:9px}",
+    ".dc-ev-text{color:#fff;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:2px;line-height:1.4;text-shadow:0 1px 6px rgba(0,0,0,0.6)}",
+    /* lightbox */
+    "#dc-lightbox{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;padding:24px;cursor:zoom-out}",
+    "#dc-lightbox.dc-lb-open{display:flex}",
+    "#dc-lightbox img{max-width:90vw;max-height:90vh;border-radius:16px;box-shadow:0 32px 80px rgba(0,0,0,0.8);object-fit:contain;animation:dc-lb-in 0.25s cubic-bezier(0.22,1,0.36,1)}",
+    "@keyframes dc-lb-in{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}",
+    "#dc-lightbox-caption{position:fixed;bottom:40px;left:0;right:0;text-align:center;color:#fff;font-family:Inter,sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:3px;text-shadow:0 2px 8px rgba(0,0,0,0.8)}",
+    "#dc-lightbox-close{position:fixed;top:24px;right:28px;color:rgba(255,255,255,0.7);font-size:32px;cursor:pointer;line-height:1;transition:color 0.2s}",
+    "#dc-lightbox-close:hover{color:#D4AF37}"
+  ].join("");
+
+  var CARDS = [
+    {img:"ev-4.jpg", label:"TEDx Lerici"},
+    {img:"ev-7.jpg", label:"Premio · Avvocatura dello Stato"},
+    {img:"ev-1.jpg", label:"Camera dei Deputati"},
+    {img:"ev-5.jpg", label:"TEDx Cagliari"},
+    {img:"ev-2.jpg", label:"Confcommercio"},
+    {img:"ev-3.jpg", label:"Autore · Gruppo Feltrinelli"},
+    {img:"ev-6.jpg", label:"Senato della Repubblica"},
+    {img:"ev-8.jpg", label:"Confindustria"}
+  ];
+
+  var BASE = "./img/eventi/";
+
+  function cardHTML(c, isDupe) {
+    var tabAttr = isDupe ? ' tabindex="-1" aria-hidden="true"' : ' tabindex="0" role="button"';
+    return '<div class="dc-ev-card" data-img="'+BASE+c.img+'" data-label="'+c.label+'"'+tabAttr+'>'
+      + '<img src="'+BASE+c.img+'" alt="'+c.label+'" loading="lazy">'
+      + '<div class="dc-ev-overlay"></div>'
+      + '<div class="dc-ev-label"><div class="dc-ev-bar"></div><div class="dc-ev-text">'+c.label+'</div></div>'
+      + '</div>';
+  }
+
+  var allCards = CARDS.map(function(c){return cardHTML(c,false);}).join("")
+                + CARDS.map(function(c){return cardHTML(c,true);}).join("");
+
+  var SECTION_HTML = '<div id="dc-palchi-section" style="background:#060810;padding:clamp(64px,8vw,100px) 0">'
+    + '<p style="text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:4px;color:#D4AF37;font-weight:600;margin:0 0 16px;font-family:Inter,sans-serif">Dove sono stato invitato</p>'
+    + '<h2 style="text-align:center;font-family:\'Playfair Display\',Georgia,serif;font-size:clamp(28px,4vw,46px);font-weight:900;line-height:1.15;margin:0 0 40px;color:#fff;padding:0 20px">Palchi e <em style="background:linear-gradient(135deg,#BF953F 0%,#FCF6BA 25%,#B38728 50%,#FBF5B7 75%,#AA771C 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal">Istituzioni</em></h2>'
+    + '<div style="position:relative;overflow:hidden">'
+    + '<div style="position:absolute;left:0;top:0;bottom:0;width:100px;background:linear-gradient(to right,#060810,transparent);z-index:5;pointer-events:none"></div>'
+    + '<div style="position:absolute;right:0;top:0;bottom:0;width:100px;background:linear-gradient(to left,#060810,transparent);z-index:5;pointer-events:none"></div>'
+    + '<div style="padding:12px 0 20px"><div class="dc-ev-track">' + allCards + '</div></div>'
+    + '</div></div>';
+
+  var LIGHTBOX_HTML = '<div id="dc-lightbox">'
+    + '<span id="dc-lightbox-close" aria-label="Chiudi">&#x2715;</span>'
+    + '<img id="dc-lightbox-img" src="" alt="">'
+    + '<div id="dc-lightbox-caption"></div>'
+    + '</div>';
+
+  function openLightbox(src, label) {
+    var lb = document.getElementById('dc-lightbox');
+    lb.querySelector('#dc-lightbox-img').src = src;
+    lb.querySelector('#dc-lightbox-img').alt = label;
+    lb.querySelector('#dc-lightbox-caption').textContent = label;
+    lb.classList.add('dc-lb-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    var lb = document.getElementById('dc-lightbox');
+    lb.classList.remove('dc-lb-open');
+    document.body.style.overflow = '';
+  }
+
+  function initLightbox() {
+    if (document.getElementById('dc-lightbox')) return;
+    var div = document.createElement('div');
+    div.innerHTML = LIGHTBOX_HTML;
+    document.body.appendChild(div.firstElementChild);
+    document.getElementById('dc-lightbox').addEventListener('click', function(e) {
+      if (e.target === this || e.target.id === 'dc-lightbox-close') closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  }
+
+  function inject() {
+    if (document.getElementById('dc-palchi-section')) return true; // already injected
+    /* Insert Palchi right after the hero video, before the stats section (#credenziali) */
+    var insertBefore = document.getElementById('credenziali');
+    if (!insertBefore) {
+      /* fallback: first sibling after the hero video section (SECTION with no h2, ~816px) */
+      var sections = document.querySelectorAll('.min-h-screen > section, #root > div > section');
+      for (var i = 0; i < sections.length; i++) {
+        if (!sections[i].querySelector('h2') && sections[i].offsetHeight > 300) {
+          insertBefore = sections[i].nextElementSibling;
+          break;
+        }
+      }
+    }
+    if (!insertBefore) return false;
+    /* Remove the old stats section (#chi-sono) if still present */
+    var chiSono = document.getElementById('chi-sono');
+    if (chiSono) chiSono.remove();
+    /* Inject styles */
+    if (!document.getElementById('dc-eventi-css')) {
+      var style = document.createElement('style');
+      style.id = 'dc-eventi-css';
+      style.textContent = CSS;
+      document.head.appendChild(style);
+    }
+    initLightbox();
+    /* Insert Palchi e Istituzioni right after the hero, before stats/books */
+    var wrapper = document.createElement('div');
+    wrapper.innerHTML = SECTION_HTML;
+    var evSection = wrapper.firstElementChild;
+    insertBefore.parentNode.insertBefore(evSection, insertBefore);
+    /* Attach click listeners */
+    document.querySelectorAll('.dc-ev-card[data-img]').forEach(function(card) {
+      if (card.getAttribute('aria-hidden') === 'true') return;
+      card.addEventListener('click', function() {
+        openLightbox(this.getAttribute('data-img'), this.getAttribute('data-label'));
+      });
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') openLightbox(this.getAttribute('data-img'), this.getAttribute('data-label'));
+      });
+    });
+    return true;
+  }
+
+  /* ── Storie di Successo (Canva embed) injection ─────────────── */
+  function injectStorie() {
+    if (document.getElementById('dc-storie-section')) return true;
+    /* Find the "Articoli Su di Me" section and insert Storie BEFORE it */
+    var articoliSection = null;
+    document.querySelectorAll('h2').forEach(function(h2) {
+      if (h2.textContent.trim() === 'Articoli Su di Me') {
+        var el = h2;
+        while (el.parentElement && el.parentElement !== document.body) {
+          if (el.className && (el.className.indexOf('py-24') !== -1 || el.className.indexOf('grain') !== -1)) break;
+          el = el.parentElement;
+        }
+        articoliSection = el;
+      }
+    });
+    if (!articoliSection) return false;
+    var html = '<div id="dc-storie-section" style="background:#060810;padding:clamp(64px,8vw,100px) clamp(20px,4vw,40px)">'
+      + '<p style="font-size:11px;text-transform:uppercase;letter-spacing:4px;color:#D4AF37;font-weight:600;margin:0 0 12px;font-family:Inter,sans-serif">Case Study &amp; Risultati</p>'
+      + '<h2 style="font-family:\'Playfair Display\',Georgia,serif;font-size:clamp(28px,4vw,46px);font-weight:900;line-height:1.15;margin:0 0 40px;color:#fff">Storie di <em style="background:linear-gradient(135deg,#BF953F 0%,#FCF6BA 25%,#B38728 50%,#FBF5B7 75%,#AA771C 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal">Successo</em></h2>'
+      + '<div style="position:relative;width:100%;height:0;padding-top:56.25%;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.5)">'
+      + '<iframe loading="lazy" style="position:absolute;width:100%;height:100%;top:0;left:0;border:none" src="https://www.canva.com/design/DAF8wilTZ0k/nifhkkukzYPQJybrmkh4Bw/view?embed" allowfullscreen allow="fullscreen"></iframe>'
+      + '</div></div>';
+    var wrapper = document.createElement('div');
+    wrapper.innerHTML = html;
+    articoliSection.parentNode.insertBefore(wrapper.firstElementChild, articoliSection);
+    return true;
+  }
+
+  var observer = new MutationObserver(function() {
+    inject();
+    injectStorie();
+    if (document.getElementById('dc-palchi-section') && document.getElementById('dc-storie-section')) observer.disconnect();
+  });
+  observer.observe(document.body, {childList:true, subtree:true});
+  setTimeout(function() { observer.disconnect(); inject(); injectStorie(); }, 5000);
+})();
+/* ───────────────────────────────────────────────────────────────── */
+
 	// Don't show the lovable-badge if the page is in an iframe or if it's being rendered by puppeteer (screenshot service)
 	if (window.self !== window.top || navigator.userAgent.includes('puppeteer')) {
 		// the page is in an iframe
@@ -266,6 +462,57 @@
 			}
 		});
 	}
+</script>
+
+<!-- ── WhatsApp Button ── -->
+<style>
+#whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25d366;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37,211,102,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+#whatsapp-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(37,211,102,0.55);
+}
+#whatsapp-btn svg {
+  width: 34px;
+  height: 34px;
+  fill: #fff;
+}
+</style>
+<a id="whatsapp-btn"
+   href="https://api.whatsapp.com/send/?phone=393476441762&text=Salve,+vorrei+ricevere+informazioni+sui+prodotti+e+servizi+della+Davide+Caiazzo+Academy.+Quando+possiamo+sentirci%3F+Grazie&type=phone_number&app_absent=0"
+   target="_blank" rel="noopener noreferrer" aria-label="Contattaci su WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+  </svg>
+</a>
+
+<!-- ── DC Chatbot ── -->
+<script>
+(function(){
+  setTimeout(function(){
+    var s = document.createElement('style');
+    s.textContent = '#dc-chat-widget{bottom:100px!important}';
+    document.head.appendChild(s);
+    var w = document.createElement('script');
+    w.src = 'https://dc-chatbot-vswb.onrender.com/widget.js';
+    w.setAttribute('data-bot','linkedin');
+    w.setAttribute('data-auto-open','true');
+    document.body.appendChild(w);
+  }, 500);
+})();
 </script>
 </body>
 </html>
