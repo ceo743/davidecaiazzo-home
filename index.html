@@ -515,7 +515,27 @@ a[href*="amazon.it"] span:last-child {
     if (trasparenzaLink && !trasparenzaLink.textContent.trim()) {
       trasparenzaLink.setAttribute('aria-label', 'Leggi la pagina Trasparenza');
     }
+
+    // Fix link login → Kajabi
+    var loginLink = document.querySelector('a[href*="/login"]');
+    if (loginLink) loginLink.setAttribute('href', 'https://app.kajabi.com/users/sign_in');
+
+    // Fix link #chi-sono → #credenziali (sezione reale nella pagina)
+    var chiSonoLink = document.querySelector('a[href="#chi-sono"]');
+    if (chiSonoLink) chiSonoLink.setAttribute('href', '#credenziali');
   }, 2000);
+
+  // Smooth scroll per link hash interni (React Router intercetta e blocca la navigazione nativa)
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    var target = document.getElementById(id);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+  }, true);
 })();
 /* ───────────────────────────────────────────────────────────────── */
 
