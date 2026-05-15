@@ -523,6 +523,24 @@ a[href*="amazon.it"] span:last-child {
     // Fix link #chi-sono → #credenziali (sezione reale nella pagina)
     var chiSonoLink = document.querySelector('a[href="#chi-sono"]');
     if (chiSonoLink) chiSonoLink.setAttribute('href', '#credenziali');
+
+    // Fix YouTube → link con sub_confirmation
+    var ytLink = document.querySelector('a[href*="youtube.com/@DavideCaiazzo"]');
+    if (ytLink) ytLink.setAttribute('href', 'https://www.youtube.com/@DavideCaiazzo?sub_confirmation=1');
+
+    // Card articoli → link a /parlano-di-me
+    var h2Articoli = Array.from(document.querySelectorAll('h2')).find(function(h){ return h.textContent.includes('Articoli'); });
+    if (h2Articoli) {
+      var sezArticoli = h2Articoli.closest('section');
+      if (sezArticoli) {
+        sezArticoli.querySelectorAll('.rounded-2xl').forEach(function(card) {
+          card.style.cursor = 'pointer';
+          card.addEventListener('click', function() {
+            window.location.href = '/parlano-di-me';
+          });
+        });
+      }
+    }
   }, 2000);
 
   // Smooth scroll per link hash interni (React Router intercetta e blocca la navigazione nativa)
