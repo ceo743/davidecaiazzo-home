@@ -485,14 +485,6 @@ a[href*="amazon.it"] span:last-child {
   /* ── Fix H1 vuota + alt immagini mancanti ── */
   setTimeout(function() {
     // H1: popola gli span vuoti se React non l'ha fatto
-    var h1 = document.querySelector('h1');
-    if (h1) {
-      var spans = h1.querySelectorAll('span');
-      if (spans.length >= 2 && !spans[0].textContent.trim() && !spans[1].textContent.trim()) {
-        spans[0].textContent = 'Il LinkedIn Coach';
-        spans[1].textContent = 'N°1 in Italia';
-      }
-    }
     // Alt immagini mancanti
     var libri = document.querySelector('img[src*="foto_libri"]');
     if (libri && !libri.alt) libri.alt = 'Il Potere di LinkedIn e I Segreti del Personal Branding — libri di Davide Caiazzo';
