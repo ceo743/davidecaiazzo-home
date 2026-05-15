@@ -620,6 +620,197 @@ a[href*="amazon.it"] span:last-child {
   </svg>
 </a>
 
+<!-- ── Corso Agenti AI — Banner + Sezione ── -->
+<script>
+(function(){
+  var GOLD = 'linear-gradient(135deg,#BF953F 0%,#FCF6BA 25%,#B38728 50%,#FBF5B7 75%,#AA771C 100%)';
+  var CORSO_URL = 'https://corso-agenti.davidecaiazzo.it/';
+  var DEADLINE = new Date('2026-05-18T23:59:59');
+
+  /* ── 1. BANNER URGENZA (fisso sotto la hero) ── */
+  var bannerCSS = [
+    '#dc-corso-banner{background:#0d0f1e;border-top:1px solid rgba(191,149,63,.25);padding:0 32px;position:fixed;bottom:0;left:0;right:0;z-index:99999;height:88px;display:flex;align-items:center;justify-content:space-between;gap:32px}',
+    '#dc-corso-spacer{height:0}',
+    '#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:88px!important}',
+    '#dc-corso-banner .bc-left{display:flex;flex-direction:column;justify-content:center;gap:4px;flex-shrink:0}',
+    '#dc-corso-banner .bc-tag{font-size:15px;text-transform:uppercase;letter-spacing:.3em;background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;font-family:Inter,sans-serif}',
+    '#dc-corso-banner .bc-tagline{font-family:Inter,sans-serif;font-size:1.9rem;font-weight:700;color:#fff;white-space:nowrap}',
+    '#dc-corso-banner .bc-tagline strong{background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}',
+    '#dc-corso-banner .bc-cd{display:flex;align-items:center;gap:10px;flex-shrink:0}',
+    '#dc-corso-banner .bc-cd-unit{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(191,149,63,.3);border-radius:10px;padding:10px 18px;min-width:72px}',
+    '#dc-corso-banner .bc-cd-num{font-family:Inter,sans-serif;font-size:2rem;font-weight:800;color:#FCF6BA;line-height:1;letter-spacing:-.02em}',
+    '#dc-corso-banner .bc-cd-lbl{font-family:Inter,sans-serif;font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(252,251,248,.45);margin-top:4px}',
+    '#dc-corso-banner .bc-cd-sep{font-size:2rem;font-weight:800;color:rgba(191,149,63,.45);line-height:1;align-self:flex-start;padding-top:10px}',
+    '#dc-corso-banner .bc-cta{background:'+GOLD+';color:#000;padding:16px 36px;border-radius:50px;font-weight:800;font-size:1rem;text-decoration:none;white-space:nowrap;transition:opacity .2s;font-family:Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;flex-shrink:0;margin-right:80px}',
+    '#dc-corso-banner .bc-cta:hover{opacity:.85}',
+    '@media(max-width:1000px){#dc-corso-banner .bc-left{display:none}}',
+    '@media(max-width:650px){#dc-corso-banner{padding:0 16px;height:72px}#dc-corso-spacer{height:72px}#dc-corso-banner .bc-cd-unit{min-width:54px;padding:8px 12px}#dc-corso-banner .bc-cd-num{font-size:1.5rem}#dc-corso-banner .bc-cta{padding:12px 22px;font-size:.85rem}}'
+  ].join('');
+
+  function updateCountdown() {
+    var now = new Date();
+    var diff = DEADLINE - now;
+    if (diff <= 0) {
+      var el = document.getElementById('dc-bc-cd'); if(el) el.textContent = 'Scaduta';
+      ['dc-sec-cd-d','dc-sec-cd-h','dc-sec-cd-m'].forEach(function(id){ var e=document.getElementById(id); if(e) e.textContent='0'; });
+      return;
+    }
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor((diff%86400000)/3600000);
+    var m = Math.floor((diff%3600000)/60000);
+    var s = Math.floor((diff%60000)/1000);
+    /* banner */
+    var bd = document.getElementById('dc-bc-d'); if(bd) bd.textContent = ('0'+d).slice(-2);
+    var bh = document.getElementById('dc-bc-h'); if(bh) bh.textContent = ('0'+h).slice(-2);
+    var bm = document.getElementById('dc-bc-m'); if(bm) bm.textContent = ('0'+m).slice(-2);
+    var bs = document.getElementById('dc-bc-s'); if(bs) bs.textContent = ('0'+s).slice(-2);
+    /* sezione */
+    var sd = document.getElementById('dc-sec-cd-d'); if(sd) sd.textContent = d;
+    var sh = document.getElementById('dc-sec-cd-h'); if(sh) sh.textContent = ('0'+h).slice(-2);
+    var sm = document.getElementById('dc-sec-cd-m'); if(sm) sm.textContent = ('0'+m).slice(-2);
+  }
+
+  var bannerHTML = '<div id="dc-corso-banner">'
+    + '<div class="bc-left">'
+    + '<div class="bc-tag">⚡ Offerta Lancio · Corso AI Agenti</div>'
+    + '<div class="bc-tagline">Automatizza il tuo lavoro. <span style="opacity:.7;font-weight:500">Il prezzo sale a</span> <strong>€697</strong> tra:</div>'
+    + '</div>'
+    + '<div class="bc-cd">'
+    + '<div class="bc-cd-unit"><span class="bc-cd-num" id="dc-bc-d">03</span><span class="bc-cd-lbl">Giorni</span></div>'
+    + '<span class="bc-cd-sep">:</span>'
+    + '<div class="bc-cd-unit"><span class="bc-cd-num" id="dc-bc-h">00</span><span class="bc-cd-lbl">Ore</span></div>'
+    + '<span class="bc-cd-sep">:</span>'
+    + '<div class="bc-cd-unit"><span class="bc-cd-num" id="dc-bc-m">00</span><span class="bc-cd-lbl">Min</span></div>'
+    + '<span class="bc-cd-sep">:</span>'
+    + '<div class="bc-cd-unit"><span class="bc-cd-num" id="dc-bc-s">00</span><span class="bc-cd-lbl">Sec</span></div>'
+    + '</div>'
+    + '<a href="'+CORSO_URL+'" class="bc-cta" target="_blank" rel="noopener">Scopri di più</a>'
+    + '</div>';
+
+  /* ── 2. SEZIONE NEL CORPO (tra Servizi e Testimonianze) ── */
+  var sectionCSS = [
+    '#dc-corso-section{background:#07090f;padding:clamp(64px,8vw,100px) clamp(20px,4vw,48px);position:relative;overflow:hidden}',
+    '#dc-corso-section::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(191,149,63,.07) 0%,transparent 70%);pointer-events:none}',
+    '.dc-corso-inner{max-width:900px;margin:0 auto;border:1px solid rgba(191,149,63,.2);border-radius:24px;overflow:hidden;position:relative}',
+    '.dc-corso-top-bar{height:3px;background:'+GOLD+'}',
+    '.dc-corso-body{padding:clamp(32px,5vw,56px);display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}',
+    '@media(max-width:700px){.dc-corso-body{grid-template-columns:1fr;gap:28px}}',
+    '.dc-corso-tag{font-size:10px;text-transform:uppercase;letter-spacing:.4em;background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;font-family:Inter,sans-serif;margin-bottom:14px}',
+    '.dc-corso-title{font-family:"Playfair Display",Georgia,serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:10px}',
+    '.dc-corso-sub{font-family:Inter,sans-serif;font-size:.95rem;color:rgba(252,251,248,.6);margin-bottom:24px;line-height:1.6}',
+    '.dc-corso-features{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;margin-bottom:0}',
+    '@media(max-width:500px){.dc-corso-features{grid-template-columns:1fr}}',
+    '.dc-corso-features li{font-family:Inter,sans-serif;font-size:.84rem;color:rgba(252,251,248,.8);display:flex;align-items:center;gap:8px}',
+    '.dc-corso-features li::before{content:"✓";background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;flex-shrink:0}',
+    '.dc-corso-cta-box{text-align:center;flex-shrink:0}',
+    '.dc-corso-price-old{font-family:Inter,sans-serif;font-size:.8rem;color:rgba(252,251,248,.4);text-decoration:line-through;margin-bottom:4px}',
+    '.dc-corso-price-new{font-family:"Playfair Display",Georgia,serif;font-size:2.8rem;font-weight:900;background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px}',
+    '.dc-corso-price-note{font-family:Inter,sans-serif;font-size:.7rem;color:rgba(252,251,248,.4);margin-bottom:16px}',
+    '.dc-corso-countdown{display:flex;gap:6px;justify-content:center;margin-bottom:18px}',
+    '.dc-corso-cd-unit{display:flex;flex-direction:column;align-items:center;background:rgba(191,149,63,.12);border:1px solid rgba(191,149,63,.3);border-radius:8px;padding:8px 12px;min-width:52px}',
+    '.dc-corso-cd-num{font-family:"Playfair Display",Georgia,serif;font-size:1.5rem;font-weight:900;background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}',
+    '.dc-corso-cd-label{font-family:Inter,sans-serif;font-size:.55rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(252,251,248,.4);margin-top:3px}',
+    '.dc-corso-cd-sep{font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;font-weight:900;color:rgba(191,149,63,.5);align-self:flex-start;padding-top:8px}',
+    '.dc-corso-urgency{font-family:Inter,sans-serif;font-size:.7rem;color:#ef4444;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}',
+    '.dc-corso-btn{display:block;background:'+GOLD+';color:#000;padding:14px 32px;border-radius:10px;font-weight:700;font-size:.9rem;text-decoration:none;transition:opacity .2s;font-family:Inter,sans-serif;margin-bottom:10px;white-space:nowrap}',
+    '.dc-corso-btn:hover{opacity:.85}',
+    '.dc-corso-garanzia{font-family:Inter,sans-serif;font-size:.7rem;color:rgba(252,251,248,.4);text-align:center}'
+  ].join('');
+
+  var sectionHTML = '<div id="dc-corso-section">'
+    + '<div class="dc-corso-inner">'
+    + '<div class="dc-corso-top-bar"></div>'
+    + '<div class="dc-corso-body">'
+    + '<div>'
+    + '<div class="dc-corso-tag">Corso AI · Agenti Automatici</div>'
+    + '<h2 class="dc-corso-title">Automatizza il tuo Lavoro<br>con l\'AI</h2>'
+    + '<p class="dc-corso-sub">Smetti di chiedere all\'AI. Fai lavorare l\'AI per te.</p>'
+    + '<ul class="dc-corso-features">'
+    + '<li>6 moduli pratici da zero</li>'
+    + '<li>Nessuna programmazione</li>'
+    + '<li>Accesso a vita + aggiornamenti</li>'
+    + '<li>Report e chatbot automatici</li>'
+    + '<li>Per manager, HR, consulenti</li>'
+    + '<li>Garanzia 14 giorni</li>'
+    + '</ul>'
+    + '</div>'
+    + '<div class="dc-corso-cta-box">'
+    + '<div class="dc-corso-urgency">⏳ Offerta scade tra</div>'
+    + '<div class="dc-corso-countdown">'
+    + '<div class="dc-corso-cd-unit"><span class="dc-corso-cd-num" id="dc-sec-cd-d">3</span><span class="dc-corso-cd-label">giorni</span></div>'
+    + '<span class="dc-corso-cd-sep">:</span>'
+    + '<div class="dc-corso-cd-unit"><span class="dc-corso-cd-num" id="dc-sec-cd-h">00</span><span class="dc-corso-cd-label">ore</span></div>'
+    + '<span class="dc-corso-cd-sep">:</span>'
+    + '<div class="dc-corso-cd-unit"><span class="dc-corso-cd-num" id="dc-sec-cd-m">00</span><span class="dc-corso-cd-label">min</span></div>'
+    + '</div>'
+    + '<div class="dc-corso-price-old">€697</div>'
+    + '<div class="dc-corso-price-new">€397</div>'
+    + '<div class="dc-corso-price-note">Prezzo di lancio · poi torna a €697</div>'
+    + '<a href="'+CORSO_URL+'" class="dc-corso-btn" target="_blank" rel="noopener">Scopri il Corso →</a>'
+    + '<div class="dc-corso-garanzia">✓ Garanzia soddisfatti o rimborsati 14gg</div>'
+    + '</div>'
+    + '</div>'
+    + '</div>'
+    + '</div>';
+
+  function injectBanner() {
+    if (document.getElementById('dc-corso-banner')) return true;
+    /* Inserisco subito prima del carosello palchi — primo elemento dopo la hero */
+    var anchor = document.getElementById('dc-palchi-section');
+    if (!anchor) anchor = document.getElementById('credenziali');
+    if (!anchor) return false;
+    var style = document.createElement('style');
+    style.id = 'dc-corso-banner-css';
+    style.textContent = bannerCSS;
+    document.head.appendChild(style);
+    var wrapper = document.createElement('div');
+    wrapper.innerHTML = bannerHTML;
+    anchor.parentNode.insertBefore(wrapper.firstElementChild, anchor);
+    /* spacer per non coprire il nav */
+    var spacer = document.createElement('div');
+    spacer.id = 'dc-corso-spacer';
+    anchor.parentNode.insertBefore(spacer, anchor);
+    /* nav rimane al suo posto */
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    return true;
+  }
+
+  function injectSection() {
+    if (document.getElementById('dc-corso-section')) return true;
+    /* Inserisco tra Servizi e Testimonianze */
+    var testimonianze = document.getElementById('testimonianze');
+    if (!testimonianze) {
+      /* fallback: cerca h2 con "Testimonianze" o "Clienti" */
+      document.querySelectorAll('h2').forEach(function(h2) {
+        if (!testimonianze && (h2.textContent.includes('Testimonianze') || h2.textContent.includes('Clienti'))) {
+          var el = h2;
+          while (el.parentElement && el.parentElement.tagName !== 'SECTION' && el.parentElement !== document.body) el = el.parentElement;
+          testimonianze = el.closest('section') || el.parentElement;
+        }
+      });
+    }
+    if (!testimonianze) return false;
+    var style = document.createElement('style');
+    style.id = 'dc-corso-section-css';
+    style.textContent = sectionCSS;
+    document.head.appendChild(style);
+    var wrapper = document.createElement('div');
+    wrapper.innerHTML = sectionHTML;
+    testimonianze.parentNode.insertBefore(wrapper.firstElementChild, testimonianze);
+    return true;
+  }
+
+  var obs = new MutationObserver(function() {
+    var b = injectBanner();
+    var s = injectSection();
+    if (b && s) obs.disconnect();
+  });
+  obs.observe(document.body, {childList:true, subtree:true});
+  setTimeout(function(){ obs.disconnect(); injectBanner(); injectSection(); }, 5000);
+})();
+</script>
+
 <!-- ── DC Chatbot ── -->
 <script>
 (function(){
