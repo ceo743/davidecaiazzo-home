@@ -6,14 +6,14 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://www.davidecaiazzo.it/" />
     <link rel="icon" type="image/png" href="./favicon.png">
-    <title>Davide Caiazzo | LinkedIn Coach #1 in Italia</title>
+    <title>Davide Caiazzo | Prima LinkedIn Branding Agency Italiana</title>
     <meta name="description" content="Davide Caiazzo: fondatore della prima LinkedIn Branding Agency italiana. Aiuta CEO, manager e professionisti a crescere su LinkedIn grazie al personal brand." />
     <meta name="author" content="Davide Caiazzo" />
     <meta name="geo.region" content="IT" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.davidecaiazzo.it/" />
-    <meta property="og:title" content="Davide Caiazzo | LinkedIn Coach #1 in Italia" />
+    <meta property="og:title" content="Davide Caiazzo | Prima LinkedIn Branding Agency Italiana" />
     <meta property="og:description" content="Fondatore della prima LinkedIn Branding Agency italiana. Trasforma il tuo personal brand nel tuo vantaggio competitivo." />
     <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7e326ff5-9daa-4d94-8a0c-6e5f6c9ce425/id-preview-05ce581d--8e578224-f200-4652-aece-fc49d68bb7bb.lovable.app-1774680801836.png" />
     <meta property="og:image:width" content="1200" />
@@ -24,7 +24,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@davidecaiazzo" />
     <meta name="twitter:creator" content="@davidecaiazzo" />
-    <meta name="twitter:title" content="Davide Caiazzo | LinkedIn Coach #1 in Italia" />
+    <meta name="twitter:title" content="Davide Caiazzo | Prima LinkedIn Branding Agency Italiana" />
     <meta name="twitter:description" content="Fondatore della prima LinkedIn Branding Agency italiana. Trasforma il tuo personal brand nel tuo vantaggio competitivo." />
     <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7e326ff5-9daa-4d94-8a0c-6e5f6c9ce425/id-preview-05ce581d--8e578224-f200-4652-aece-fc49d68bb7bb.lovable.app-1774680801836.png" />
 
@@ -43,6 +43,7 @@
         "name": "DC Academy S.r.l.",
         "url": "https://www.davidecaiazzo.it"
       },
+      "email": "academy@davidecaiazzo.it",
       "sameAs": [
         "https://www.linkedin.com/in/davide-caiazzo/",
         "https://www.instagram.com/davidecaiazzo_official/"
@@ -55,10 +56,11 @@
       "@type": "WebSite",
       "name": "Davide Caiazzo",
       "url": "https://www.davidecaiazzo.it",
-      "description": "LinkedIn Coach #1 in Italia — DC Academy",
+      "description": "Prima LinkedIn Branding Agency Italiana — DC Academy",
       "inLanguage": "it-IT"
     }
     </script>
+  <link rel="preload" as="video" href="./hero-video.mp4" type="video/mp4">
   <script type="text/javascript" charset="UTF-8" src="//cdn.cookie-script.com/s/5b24cef87a160ab3ee3c8e35c1c61ff9.js"></script>
   <script type="module" crossorigin src="./assets/index-Baldd8ct.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-BVWQVtXw.css">
@@ -484,7 +486,14 @@ a[href*="amazon.it"] span:last-child {
 
   /* ── Fix H1 vuota + alt immagini mancanti ── */
   setTimeout(function() {
-    // H1: popola gli span vuoti se React non l'ha fatto
+    // H1: se vuota, aggiunge testo sr-only per SEO senza alterare il layout visivo
+    var h1 = document.querySelector('h1');
+    if (h1 && !h1.textContent.trim()) {
+      var srSpan = document.createElement('span');
+      srSpan.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0';
+      srSpan.textContent = 'Prima LinkedIn Branding Agency Italiana — Davide Caiazzo';
+      h1.appendChild(srSpan);
+    }
     // Alt immagini mancanti
     var libri = document.querySelector('img[src*="foto_libri"]');
     if (libri && !libri.alt) libri.alt = 'Il Potere di LinkedIn e I Segreti del Personal Branding — libri di Davide Caiazzo';
