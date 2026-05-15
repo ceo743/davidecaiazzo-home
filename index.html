@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://www.davidecaiazzo.it/" />
     <link rel="icon" type="image/png" href="./favicon.png">
     <title>Davide Caiazzo | LinkedIn Coach #1 in Italia</title>
-    <meta name="description" content="Davide Caiazzo: fondatore della prima LinkedIn Branding Agency italiana. Aiuta CEO, manager e professionisti a trasformare il personal brand in vantaggio competitivo su LinkedIn." />
+    <meta name="description" content="Davide Caiazzo: fondatore della prima LinkedIn Branding Agency italiana. Aiuta CEO, manager e professionisti a crescere su LinkedIn grazie al personal brand." />
     <meta name="author" content="Davide Caiazzo" />
     <meta name="geo.region" content="IT" />
 
@@ -496,8 +496,24 @@ a[href*="amazon.it"] span:last-child {
     // Alt immagini mancanti
     var libri = document.querySelector('img[src*="foto_libri"]');
     if (libri && !libri.alt) libri.alt = 'Il Potere di LinkedIn e I Segreti del Personal Branding — libri di Davide Caiazzo';
-    var logoImg = document.querySelector('img[src*="logo"], img[alt=""]');
-    if (logoImg && !logoImg.alt) logoImg.alt = 'Davide Caiazzo';
+
+    // Hamburger: aggiungi aria-label
+    var hamburger = document.querySelector('button.md\\:hidden, nav button:not([id])');
+    if (hamburger && !hamburger.getAttribute('aria-label')) hamburger.setAttribute('aria-label', 'Apri menu');
+
+    // Logo link: # → /
+    var logoLink = document.querySelector('nav a[href="#"]');
+    if (logoLink) logoLink.setAttribute('href', '/');
+
+    // Policy link: aggiungi noopener se manca
+    var policyLink = document.querySelector('a[href*="policy"]');
+    if (policyLink && !policyLink.rel.includes('noopener')) policyLink.rel = 'noopener noreferrer';
+
+    // Trasparenza link: aggiungi aria-label se testo vuoto
+    var trasparenzaLink = document.querySelector('a[href*="trasparenza"]');
+    if (trasparenzaLink && !trasparenzaLink.textContent.trim()) {
+      trasparenzaLink.setAttribute('aria-label', 'Leggi la pagina Trasparenza');
+    }
   }, 2000);
 })();
 /* ───────────────────────────────────────────────────────────────── */
