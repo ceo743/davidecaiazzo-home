@@ -636,6 +636,7 @@ a[href*="amazon.it"] span:last-child {
     '#dc-corso-spacer{height:0}',
     '#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:88px!important}',
     '@media(max-width:600px){#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:130px!important}}',
+    '.bc-nl{display:none}@media(max-width:600px){.bc-nl{display:block;height:0;width:100%}}',
     '#dc-corso-banner .bc-left{display:flex;flex-direction:column;justify-content:center;gap:4px;flex-shrink:0}',
     '#dc-corso-banner .bc-tag{font-size:15px;text-transform:uppercase;letter-spacing:.3em;background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;font-family:Inter,sans-serif}',
     '#dc-corso-banner .bc-tagline{font-family:Inter,sans-serif;font-size:1.9rem;font-weight:700;color:#fff;white-space:nowrap}',
@@ -677,7 +678,7 @@ a[href*="amazon.it"] span:last-child {
   var bannerHTML = '<div id="dc-corso-banner">'
     + '<div class="bc-left">'
     + '<div class="bc-tag">🔒 Prezzo bloccato · Corso AI Agenti</div>'
-    + '<div class="bc-tagline">Automatizza il tuo lavoro. <span style="opacity:.7;font-weight:500">Il prezzo sale a</span> <span style="white-space:nowrap"><strong>€997</strong> tra:</span></div>'
+    + '<div class="bc-tagline">Automatizza il tuo lavoro. <span style="opacity:.7;font-weight:500">Il prezzo sale a</span><span class="bc-nl"></span> <span style="white-space:nowrap"><strong>€997</strong> tra:</span></div>'
     + '</div>'
     + '<div class="bc-cd">'
     + '<div class="bc-cd-unit"><span class="bc-cd-num" id="dc-bc-d">03</span><span class="bc-cd-lbl">Giorni</span></div>'
