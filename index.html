@@ -589,7 +589,7 @@ a[href*="amazon.it"] span:last-child {
 <style>
 #whatsapp-btn {
   position: fixed;
-  bottom: 20px;
+  bottom: 96px;
   right: 20px;
   width: 60px;
   height: 60px;
@@ -649,8 +649,8 @@ a[href*="amazon.it"] span:last-child {
     /* ── CTA ── */
     '#dc-corso-banner .bc-cta{background:'+GOLD+';color:#000;padding:14px 28px;border-radius:50px;font-weight:800;font-size:.9rem;text-decoration:none;white-space:nowrap;transition:opacity .2s;font-family:Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;flex-shrink:0}',
     '#dc-corso-banner .bc-cta:hover{opacity:.85}',
-    /* ── Tablet 601-1024px: testo compatto, tag nascosto, chatbot/cookie badge nascosti ── */
-    '@media(max-width:1024px) and (min-width:601px){#dc-corso-banner{gap:14px;padding:0 16px}#dc-corso-banner .bc-tag{display:none}#dc-corso-banner .bc-tagline{font-size:.88rem}#dc-corso-banner .bc-cd-unit{min-width:48px;padding:6px 10px}#dc-corso-banner .bc-cd-num{font-size:1.35rem}#dc-corso-banner .bc-cd-sep{font-size:1.35rem;padding-top:5px}#dc-corso-banner .bc-cta{padding:12px 20px;font-size:.8rem}#cookiescript_badge,[id*="cookiescript_badge"],[class*="cookiescript-badge"]{display:none!important}}',
+    /* ── Tablet 601-1024px: solo tag, tagline nascosta, SEC nascosto ── */
+    '@media(max-width:1024px) and (min-width:601px){#dc-corso-banner{gap:12px;padding:0 16px}#dc-corso-banner .bc-tagline{display:none}#dc-corso-banner .bc-tag{font-size:10px;letter-spacing:.25em}#dc-corso-banner .bc-cd-unit{min-width:44px;padding:5px 8px}#dc-corso-banner .bc-cd-num{font-size:1.25rem}#dc-corso-banner .bc-cd-sep{font-size:1.25rem;padding-top:4px}#dc-corso-banner .bc-cd-unit:last-child,#dc-corso-banner .bc-cd-sep:last-of-type{display:none}#dc-corso-banner .bc-cta{padding:11px 18px;font-size:.8rem}}',
     /* ── Mobile ≤600px: layout colonna ── */
     '@media(max-width:600px){#dc-corso-banner{height:auto;padding:10px 16px 12px;flex-direction:column;align-items:center;justify-content:center;gap:8px}#dc-corso-spacer{height:124px}#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:124px!important}#dc-corso-banner .bc-left{flex-direction:column;align-items:center;text-align:center;gap:2px;width:100%}#dc-corso-banner .bc-tag{font-size:10px}#dc-corso-banner .bc-tagline{font-size:.95rem;white-space:normal;text-align:center}#dc-corso-banner .bc-cd{gap:6px}#dc-corso-banner .bc-cd-unit{min-width:44px;padding:6px 8px}#dc-corso-banner .bc-cd-num{font-size:1.35rem}#dc-corso-banner .bc-cd-sep{font-size:1.35rem;padding-top:5px}#dc-corso-banner .bc-cd-unit:last-child,#dc-corso-banner .bc-cd-sep:last-of-type{display:none}#dc-corso-banner .bc-cta{padding:12px 24px;font-size:.85rem}}'
   ].join('');
@@ -824,7 +824,7 @@ a[href*="amazon.it"] span:last-child {
 (function(){
   setTimeout(function(){
     var s = document.createElement('style');
-    s.textContent = '#dc-chat-widget{bottom:100px;right:auto!important;left:20px!important}@media(max-width:1024px){#dc-chat-widget,#dc-chat-widget *{display:none!important}}';
+    s.textContent = '#dc-chat-widget,#dc-chat-widget *{display:none!important}';
     document.head.appendChild(s);
     var w = document.createElement('script');
     w.src = 'https://dc-chatbot-vswb.onrender.com/widget.js';
