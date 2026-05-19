@@ -611,8 +611,8 @@ a[href*="amazon.it"] span:last-child {
   height: 34px;
   fill: #fff;
 }
-@media(max-width:600px){
-  #whatsapp-btn{display:none}
+@media(max-width:768px){
+  #whatsapp-btn{display:none!important}
 }
 </style>
 <a id="whatsapp-btn"
@@ -678,7 +678,7 @@ a[href*="amazon.it"] span:last-child {
   var bannerHTML = '<div id="dc-corso-banner">'
     + '<div class="bc-left">'
     + '<div class="bc-tag">🔒 Prezzo bloccato · Corso AI Agenti</div>'
-    + '<div class="bc-tagline">Automatizza il tuo lavoro. <span style="opacity:.7;font-weight:500">Il prezzo sale a</span><span class="bc-nl"></span> <span style="white-space:nowrap"><strong>€997</strong> tra:</span></div>'
+    + '<div class="bc-tagline">Automatizza il tuo lavoro. <span style="opacity:.7;font-weight:500">Il prezzo sale a</span><span class="bc-nl"></span> <span style="white-space:nowrap"><strong style="color:#ff6b6b;-webkit-text-fill-color:#ff6b6b;background:none">€997</strong> tra:</span></div>'
     + '</div>'
     + '<div class="bc-cd">'
     + '<div class="bc-cd-unit"><span class="bc-cd-num" id="dc-bc-d">03</span><span class="bc-cd-lbl">Giorni</span></div>'
@@ -821,7 +821,7 @@ a[href*="amazon.it"] span:last-child {
 (function(){
   setTimeout(function(){
     var s = document.createElement('style');
-    s.textContent = '#dc-chat-widget{bottom:100px!important}@media(max-width:600px){#dc-chat-widget{display:none!important}}';
+    s.textContent = '#dc-chat-widget{bottom:100px!important}@media(max-width:768px){#dc-chat-widget{display:none!important}}';
     document.head.appendChild(s);
     var w = document.createElement('script');
     w.src = 'https://dc-chatbot-vswb.onrender.com/widget.js';
