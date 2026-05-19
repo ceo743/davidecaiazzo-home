@@ -630,24 +630,28 @@ a[href*="amazon.it"] span:last-child {
 
   /* ── 1. BANNER URGENZA (fisso sotto la hero) ── */
   var bannerCSS = [
-    '#dc-corso-banner{background:#0d0f1e;border-top:1px solid rgba(191,149,63,.25);padding:0 32px;position:fixed;bottom:0;left:0;right:0;z-index:99999;height:88px;display:flex;align-items:center;justify-content:space-between;gap:32px}',
-    '#dc-corso-spacer{height:0}',
-    '#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:88px!important}',
-    '@media(max-width:600px){#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:130px!important}}',
-    '.bc-nl{display:none}@media(max-width:600px){.bc-nl{display:block;height:0;width:100%}}',
-    '#dc-corso-banner .bc-left{display:flex;flex-direction:column;justify-content:center;gap:4px;flex-shrink:0}',
-    '#dc-corso-banner .bc-tag{font-size:15px;text-transform:uppercase;letter-spacing:.3em;background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;font-family:Inter,sans-serif}',
-    '#dc-corso-banner .bc-tagline{font-family:Inter,sans-serif;font-size:1.9rem;font-weight:700;color:#fff;white-space:nowrap}',
-    '#dc-corso-banner .bc-tagline strong{background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}',
-    '#dc-corso-banner .bc-cd{display:flex;align-items:center;gap:10px;flex-shrink:0}',
-    '#dc-corso-banner .bc-cd-unit{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(191,149,63,.3);border-radius:10px;padding:10px 18px;min-width:72px}',
-    '#dc-corso-banner .bc-cd-num{font-family:Inter,sans-serif;font-size:2rem;font-weight:800;color:#FCF6BA;line-height:1;letter-spacing:-.02em}',
-    '#dc-corso-banner .bc-cd-lbl{font-family:Inter,sans-serif;font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(252,251,248,.45);margin-top:4px}',
-    '#dc-corso-banner .bc-cd-sep{font-size:2rem;font-weight:800;color:rgba(191,149,63,.45);line-height:1;align-self:flex-start;padding-top:10px}',
-    '#dc-corso-banner .bc-cta{background:'+GOLD+';color:#000;padding:16px 36px;border-radius:50px;font-weight:800;font-size:1rem;text-decoration:none;white-space:nowrap;transition:opacity .2s;font-family:Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;flex-shrink:0;margin-right:80px}',
+    /* ── Base ── */
+    '#dc-corso-banner{background:#0d0f1e;border-top:1px solid rgba(191,149,63,.25);padding:0 24px;position:fixed;bottom:0;left:0;right:0;z-index:99999;height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}',
+    '#dc-corso-spacer{height:76px}',
+    '#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:76px!important}',
+    /* ── Left block ── */
+    '#dc-corso-banner .bc-left{display:flex;flex-direction:column;justify-content:center;gap:3px;flex-shrink:0;min-width:0}',
+    '#dc-corso-banner .bc-tag{font-size:11px;text-transform:uppercase;letter-spacing:.3em;background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;font-family:Inter,sans-serif}',
+    '#dc-corso-banner .bc-tagline{font-family:Inter,sans-serif;font-size:1rem;font-weight:700;color:#fff;white-space:nowrap}',
+    '#dc-corso-banner .bc-tagline strong{-webkit-text-fill-color:#ff6b6b;color:#ff6b6b;background:none}',
+    /* ── Countdown ── */
+    '#dc-corso-banner .bc-cd{display:flex;align-items:center;gap:8px;flex-shrink:0}',
+    '#dc-corso-banner .bc-cd-unit{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(191,149,63,.3);border-radius:8px;padding:8px 14px;min-width:60px}',
+    '#dc-corso-banner .bc-cd-num{font-family:Inter,sans-serif;font-size:1.7rem;font-weight:800;color:#FCF6BA;line-height:1;letter-spacing:-.02em}',
+    '#dc-corso-banner .bc-cd-lbl{font-family:Inter,sans-serif;font-size:.55rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(252,251,248,.45);margin-top:3px}',
+    '#dc-corso-banner .bc-cd-sep{font-size:1.7rem;font-weight:800;color:rgba(191,149,63,.45);line-height:1;align-self:flex-start;padding-top:8px}',
+    /* ── CTA ── */
+    '#dc-corso-banner .bc-cta{background:'+GOLD+';color:#000;padding:14px 28px;border-radius:50px;font-weight:800;font-size:.9rem;text-decoration:none;white-space:nowrap;transition:opacity .2s;font-family:Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;flex-shrink:0}',
     '#dc-corso-banner .bc-cta:hover{opacity:.85}',
-    '@media(max-width:1000px){#dc-corso-banner .bc-left{display:none}}',
-    '@media(max-width:600px){#dc-corso-banner{height:auto;padding:10px 16px 12px;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 12px}#dc-corso-spacer{height:120px}#dc-corso-banner .bc-left{display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;width:100%}#dc-corso-banner .bc-tag{font-size:12px}#dc-corso-banner .bc-tagline{font-size:1.15rem;white-space:normal;text-align:center}#dc-corso-banner .bc-cd{gap:7px;flex:0 0 auto}#dc-corso-banner .bc-cd-unit{min-width:52px;padding:8px 12px}#dc-corso-banner .bc-cd-num{font-size:1.5rem}#dc-corso-banner .bc-cd-sep{font-size:1.5rem;padding-top:6px}#dc-corso-banner .bc-cta{padding:13px 26px;font-size:.9rem;margin-right:0;flex:0 0 auto}#dc-corso-banner .bc-cd-unit:last-child,#dc-corso-banner .bc-cd-sep:last-of-type{display:none}}'
+    /* ── Tablet 601-1024px: testo compatto, tag nascosto ── */
+    '@media(max-width:1024px) and (min-width:601px){#dc-corso-banner{gap:14px;padding:0 16px}#dc-corso-banner .bc-tag{display:none}#dc-corso-banner .bc-tagline{font-size:.88rem}#dc-corso-banner .bc-cd-unit{min-width:48px;padding:6px 10px}#dc-corso-banner .bc-cd-num{font-size:1.35rem}#dc-corso-banner .bc-cd-sep{font-size:1.35rem;padding-top:5px}#dc-corso-banner .bc-cta{padding:12px 20px;font-size:.8rem}}',
+    /* ── Mobile ≤600px: layout colonna ── */
+    '@media(max-width:600px){#dc-corso-banner{height:auto;padding:10px 16px 12px;flex-direction:column;align-items:center;justify-content:center;gap:8px}#dc-corso-spacer{height:124px}#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:124px!important}#dc-corso-banner .bc-left{flex-direction:column;align-items:center;text-align:center;gap:2px;width:100%}#dc-corso-banner .bc-tag{font-size:10px}#dc-corso-banner .bc-tagline{font-size:.95rem;white-space:normal;text-align:center}#dc-corso-banner .bc-cd{gap:6px}#dc-corso-banner .bc-cd-unit{min-width:44px;padding:6px 8px}#dc-corso-banner .bc-cd-num{font-size:1.35rem}#dc-corso-banner .bc-cd-sep{font-size:1.35rem;padding-top:5px}#dc-corso-banner .bc-cd-unit:last-child,#dc-corso-banner .bc-cd-sep:last-of-type{display:none}#dc-corso-banner .bc-cta{padding:12px 24px;font-size:.85rem}}'
   ].join('');
 
   function updateCountdown() {
@@ -676,7 +680,7 @@ a[href*="amazon.it"] span:last-child {
   var bannerHTML = '<div id="dc-corso-banner">'
     + '<div class="bc-left">'
     + '<div class="bc-tag">🔒 Prezzo bloccato · Corso AI Agenti</div>'
-    + '<div class="bc-tagline">Automatizza il tuo lavoro.<span class="bc-nl"></span> <span style="white-space:nowrap"><span style="opacity:.7;font-weight:500">Il prezzo sale a</span> <strong style="color:#ff6b6b;-webkit-text-fill-color:#ff6b6b;background:none">€997</strong> tra:</span></div>'
+    + '<div class="bc-tagline">Automatizza il tuo lavoro. <span style="white-space:nowrap;opacity:.7;font-weight:500">Il prezzo sale a</span> <strong>€997</strong> <span style="opacity:.7;font-weight:500">tra:</span></div>'
     + '</div>'
     + '<div class="bc-cd">'
     + '<div class="bc-cd-unit"><span class="bc-cd-num" id="dc-bc-d">03</span><span class="bc-cd-lbl">Giorni</span></div>'
