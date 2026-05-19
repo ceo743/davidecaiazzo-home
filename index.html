@@ -589,7 +589,7 @@ a[href*="amazon.it"] span:last-child {
 <style>
 #whatsapp-btn {
   position: fixed;
-  bottom: 110px;
+  bottom: 112px;
   right: 20px;
   width: 60px;
   height: 60px;
@@ -630,29 +630,28 @@ a[href*="amazon.it"] span:last-child {
 
   /* ── 1. BANNER URGENZA (fisso sotto la hero) ── */
   var bannerCSS = [
-    /* ── Base desktop ── */
-    '#dc-corso-banner{background:#0d0f1e;border-top:1px solid rgba(191,149,63,.25);padding:0 40px;position:fixed;bottom:0;left:0;right:0;z-index:99999;height:90px;display:flex;align-items:center}',
-    '#dc-corso-banner .bc-inner{max-width:1200px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:28px}',
-    '#dc-corso-spacer{height:90px}',
-    '#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:90px!important}',
+    /* ── Desktop grande >1280px: font grandi, tutto visibile ── */
+    '#dc-corso-banner{background:#0d0f1e;border-top:1px solid rgba(191,149,63,.25);padding:0 48px;position:fixed;bottom:0;left:0;right:0;z-index:99999;height:92px;display:flex;align-items:center}',
+    '#dc-corso-banner .bc-inner{width:100%;display:flex;align-items:center;justify-content:space-between;gap:32px}',
+    '#dc-corso-spacer{height:92px}',
+    '#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:92px!important}',
     '#cookiescript_badge{display:none!important}',
-    /* ── Left block ── */
-    '#dc-corso-banner .bc-left{display:flex;flex-direction:column;justify-content:center;gap:4px;flex-shrink:0}',
+    '#dc-corso-banner .bc-left{display:flex;flex-direction:column;justify-content:center;gap:5px;flex-shrink:0}',
     '#dc-corso-banner .bc-tag{font-size:13px;text-transform:uppercase;letter-spacing:.3em;background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;font-family:Inter,sans-serif}',
-    '#dc-corso-banner .bc-tagline{font-family:Inter,sans-serif;font-size:1.2rem;font-weight:700;color:#fff;white-space:nowrap}',
+    '#dc-corso-banner .bc-tagline{font-family:Inter,sans-serif;font-size:1.25rem;font-weight:700;color:#fff;white-space:nowrap}',
     '#dc-corso-banner .bc-tagline strong{-webkit-text-fill-color:#ff6b6b;color:#ff6b6b;background:none}',
-    /* ── Countdown ── */
     '#dc-corso-banner .bc-cd{display:flex;align-items:center;gap:10px;flex-shrink:0}',
     '#dc-corso-banner .bc-cd-unit{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(191,149,63,.3);border-radius:10px;padding:10px 18px;min-width:68px}',
     '#dc-corso-banner .bc-cd-num{font-family:Inter,sans-serif;font-size:2rem;font-weight:800;color:#FCF6BA;line-height:1;letter-spacing:-.02em}',
     '#dc-corso-banner .bc-cd-lbl{font-family:Inter,sans-serif;font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(252,251,248,.45);margin-top:4px}',
     '#dc-corso-banner .bc-cd-sep{font-size:2rem;font-weight:800;color:rgba(191,149,63,.45);line-height:1;align-self:flex-start;padding-top:10px}',
-    /* ── CTA ── */
     '#dc-corso-banner .bc-cta{background:'+GOLD+';color:#000;padding:16px 36px;border-radius:50px;font-weight:800;font-size:1rem;text-decoration:none;white-space:nowrap;transition:opacity .2s;font-family:Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;flex-shrink:0}',
     '#dc-corso-banner .bc-cta:hover{opacity:.85}',
-    /* ── Tablet 601-1024px: tag nascosto, frase completa, font medi ── */
-    '@media(max-width:1024px) and (min-width:601px){#dc-corso-banner{height:76px;padding:0 20px}#dc-corso-banner .bc-inner{gap:14px}#dc-corso-spacer{height:76px}#dc-corso-banner .bc-tag{display:none}#dc-corso-banner .bc-tagline{font-size:.9rem}#dc-corso-banner .bc-cd-unit{min-width:46px;padding:5px 8px}#dc-corso-banner .bc-cd-num{font-size:1.3rem}#dc-corso-banner .bc-cd-sep{font-size:1.3rem;padding-top:4px}#dc-corso-banner .bc-cta{padding:12px 22px;font-size:.85rem}}',
-    /* ── Mobile ≤600px: layout colonna, tutti i secondi ── */
+    /* ── Laptop 1025-1280px: tag nascosto, frase completa, font medi ── */
+    '@media(max-width:1280px) and (min-width:1025px){#dc-corso-banner{height:80px;padding:0 28px}#dc-corso-banner .bc-inner{gap:20px}#dc-corso-spacer{height:80px}#dc-corso-banner .bc-tag{display:none}#dc-corso-banner .bc-tagline{font-size:1rem}#dc-corso-banner .bc-cd-unit{min-width:56px;padding:7px 12px}#dc-corso-banner .bc-cd-num{font-size:1.6rem}#dc-corso-banner .bc-cd-sep{font-size:1.6rem;padding-top:7px}#dc-corso-banner .bc-cta{padding:14px 28px;font-size:.9rem}}',
+    /* ── Tablet 601-1024px: tag nascosto, solo prezzo breve, font piccoli ── */
+    '@media(max-width:1024px) and (min-width:601px){#dc-corso-banner{height:72px;padding:0 20px}#dc-corso-banner .bc-inner{gap:12px}#dc-corso-spacer{height:72px}#dc-corso-banner .bc-tag{display:none}#dc-corso-banner .bc-tagline{font-size:.88rem}#dc-corso-banner .bc-tl-long{display:none}#dc-corso-banner .bc-cd-unit{min-width:46px;padding:5px 8px}#dc-corso-banner .bc-cd-num{font-size:1.3rem}#dc-corso-banner .bc-cd-sep{font-size:1.3rem;padding-top:4px}#dc-corso-banner .bc-cta{padding:11px 20px;font-size:.82rem}}',
+    /* ── Mobile ≤600px: colonna, tutti e 4 i secondi ── */
     '@media(max-width:600px){#dc-corso-banner{height:auto;padding:12px 16px 14px}#dc-corso-banner .bc-inner{flex-direction:column;justify-content:center;gap:10px}#dc-corso-spacer{height:152px}#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:152px!important}#dc-corso-banner .bc-left{flex-direction:column;align-items:center;text-align:center;gap:3px;width:100%}#dc-corso-banner .bc-tag{font-size:11px}#dc-corso-banner .bc-tagline{font-size:1.05rem;white-space:normal;text-align:center}#dc-corso-banner .bc-cd{gap:7px}#dc-corso-banner .bc-cd-unit{min-width:48px;padding:7px 10px}#dc-corso-banner .bc-cd-num{font-size:1.5rem}#dc-corso-banner .bc-cd-sep{font-size:1.5rem;padding-top:6px}#dc-corso-banner .bc-cta{padding:14px 28px;font-size:.95rem}}'
   ].join('');
 
