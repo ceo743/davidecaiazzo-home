@@ -631,9 +631,10 @@ a[href*="amazon.it"] span:last-child {
   /* ── 1. BANNER URGENZA (fisso sotto la hero) ── */
   var bannerCSS = [
     /* ── Base ── */
-    '#dc-corso-banner{background:#0d0f1e;border-top:1px solid rgba(191,149,63,.25);padding:0 80px 0 24px;position:fixed;bottom:0;left:0;right:0;z-index:99999;height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}',
+    '#dc-corso-banner{background:#0d0f1e;border-top:1px solid rgba(191,149,63,.25);padding:0 24px;position:fixed;bottom:0;left:0;right:0;z-index:99999;height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}',
     '#dc-corso-spacer{height:76px}',
     '#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:76px!important}',
+    '#cookiescript_badge{display:none!important}',
     /* ── Left block ── */
     '#dc-corso-banner .bc-left{display:flex;flex-direction:column;justify-content:center;gap:3px;flex-shrink:0;min-width:0}',
     '#dc-corso-banner .bc-tag{font-size:11px;text-transform:uppercase;letter-spacing:.3em;background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;font-family:Inter,sans-serif}',
@@ -823,7 +824,7 @@ a[href*="amazon.it"] span:last-child {
 (function(){
   setTimeout(function(){
     var s = document.createElement('style');
-    s.textContent = '#dc-chat-widget{bottom:100px}@media(max-width:1024px){#dc-chat-widget,#dc-chat-widget *{display:none!important}}';
+    s.textContent = '#dc-chat-widget{bottom:100px;right:auto!important;left:20px!important}@media(max-width:1024px){#dc-chat-widget,#dc-chat-widget *{display:none!important}}';
     document.head.appendChild(s);
     var w = document.createElement('script');
     w.src = 'https://dc-chatbot-vswb.onrender.com/widget.js';
