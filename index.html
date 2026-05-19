@@ -631,12 +631,13 @@ a[href*="amazon.it"] span:last-child {
   /* ── 1. BANNER URGENZA (fisso sotto la hero) ── */
   var bannerCSS = [
     /* ── Base ── */
-    '#dc-corso-banner{background:#0d0f1e;border-top:1px solid rgba(191,149,63,.25);padding:0 24px;position:fixed;bottom:0;left:0;right:0;z-index:99999;height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}',
+    '#dc-corso-banner{background:#0d0f1e;border-top:1px solid rgba(191,149,63,.25);padding:0 32px;position:fixed;bottom:0;left:0;right:0;z-index:99999;height:76px;display:flex;align-items:center}',
+    '#dc-corso-banner .bc-inner{max-width:1200px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px}',
     '#dc-corso-spacer{height:76px}',
     '#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:76px!important}',
     '#cookiescript_badge{display:none!important}',
     /* ── Left block ── */
-    '#dc-corso-banner .bc-left{display:flex;flex-direction:column;justify-content:center;gap:3px;flex-shrink:0;min-width:0}',
+    '#dc-corso-banner .bc-left{display:flex;flex-direction:column;justify-content:center;gap:3px;flex-shrink:0}',
     '#dc-corso-banner .bc-tag{font-size:11px;text-transform:uppercase;letter-spacing:.3em;background:'+GOLD+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;font-family:Inter,sans-serif}',
     '#dc-corso-banner .bc-tagline{font-family:Inter,sans-serif;font-size:1rem;font-weight:700;color:#fff;white-space:nowrap}',
     '#dc-corso-banner .bc-tagline strong{-webkit-text-fill-color:#ff6b6b;color:#ff6b6b;background:none}',
@@ -647,12 +648,12 @@ a[href*="amazon.it"] span:last-child {
     '#dc-corso-banner .bc-cd-lbl{font-family:Inter,sans-serif;font-size:.55rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(252,251,248,.45);margin-top:3px}',
     '#dc-corso-banner .bc-cd-sep{font-size:1.7rem;font-weight:800;color:rgba(191,149,63,.45);line-height:1;align-self:flex-start;padding-top:8px}',
     /* ── CTA ── */
-    '#dc-corso-banner .bc-cta{background:'+GOLD+';color:#000;padding:14px 28px;border-radius:50px;font-weight:800;font-size:.9rem;text-decoration:none;white-space:nowrap;transition:opacity .2s;font-family:Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;flex-shrink:0}',
+    '#dc-corso-banner .bc-cta{background:'+GOLD+';color:#000;padding:14px 32px;border-radius:50px;font-weight:800;font-size:.9rem;text-decoration:none;white-space:nowrap;transition:opacity .2s;font-family:Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;flex-shrink:0}',
     '#dc-corso-banner .bc-cta:hover{opacity:.85}',
     /* ── Tablet 601-1024px: tag nascosto, solo prezzo breve, SEC nascosto ── */
-    '@media(max-width:1024px) and (min-width:601px){#dc-corso-banner{gap:12px;padding:0 16px}#dc-corso-banner .bc-tag{display:none}#dc-corso-banner .bc-tagline{font-size:.82rem;white-space:nowrap}#dc-corso-banner .bc-tl-long{display:none}#dc-corso-banner .bc-cd-unit{min-width:44px;padding:5px 8px}#dc-corso-banner .bc-cd-num{font-size:1.25rem}#dc-corso-banner .bc-cd-sep{font-size:1.25rem;padding-top:4px}#dc-corso-banner .bc-cd-unit:last-child,#dc-corso-banner .bc-cd-sep:last-of-type{display:none}#dc-corso-banner .bc-cta{padding:11px 18px;font-size:.8rem}}',
-    /* ── Mobile ≤600px: layout colonna ── */
-    '@media(max-width:600px){#dc-corso-banner{height:auto;padding:10px 16px 12px;flex-direction:column;align-items:center;justify-content:center;gap:8px}#dc-corso-spacer{height:124px}#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:124px!important}#dc-corso-banner .bc-left{flex-direction:column;align-items:center;text-align:center;gap:2px;width:100%}#dc-corso-banner .bc-tag{font-size:10px}#dc-corso-banner .bc-tagline{font-size:.95rem;white-space:normal;text-align:center}#dc-corso-banner .bc-cd{gap:6px}#dc-corso-banner .bc-cd-unit{min-width:44px;padding:6px 8px}#dc-corso-banner .bc-cd-num{font-size:1.35rem}#dc-corso-banner .bc-cd-sep{font-size:1.35rem;padding-top:5px}#dc-corso-banner .bc-cd-unit:last-child,#dc-corso-banner .bc-cd-sep:last-of-type{display:none}#dc-corso-banner .bc-cta{padding:12px 24px;font-size:.85rem}}'
+    '@media(max-width:1024px) and (min-width:601px){#dc-corso-banner{padding:0 16px}#dc-corso-banner .bc-inner{gap:12px}#dc-corso-banner .bc-tag{display:none}#dc-corso-banner .bc-tagline{font-size:.85rem}#dc-corso-banner .bc-tl-long{display:none}#dc-corso-banner .bc-cd-unit{min-width:44px;padding:5px 8px}#dc-corso-banner .bc-cd-num{font-size:1.25rem}#dc-corso-banner .bc-cd-sep{font-size:1.25rem;padding-top:4px}#dc-corso-banner .bc-cd-unit:last-child,#dc-corso-banner .bc-cd-sep:last-of-type{display:none}#dc-corso-banner .bc-cta{padding:11px 20px;font-size:.8rem}}',
+    /* ── Mobile ≤600px: layout colonna, con secondi ── */
+    '@media(max-width:600px){#dc-corso-banner{height:auto;padding:10px 16px 12px}#dc-corso-banner .bc-inner{flex-direction:column;justify-content:center;gap:8px}#dc-corso-spacer{height:148px}#cookiescript_injected,#cookiescript_injected_fsd,[id*="cookie"],[class*="cookie-banner"],[class*="cookiebanner"]{bottom:148px!important}#dc-corso-banner .bc-left{flex-direction:column;align-items:center;text-align:center;gap:2px;width:100%}#dc-corso-banner .bc-tag{font-size:10px}#dc-corso-banner .bc-tagline{font-size:1rem;white-space:normal;text-align:center}#dc-corso-banner .bc-cd{gap:6px}#dc-corso-banner .bc-cd-unit{min-width:44px;padding:6px 8px}#dc-corso-banner .bc-cd-num{font-size:1.35rem}#dc-corso-banner .bc-cd-sep{font-size:1.35rem;padding-top:5px}#dc-corso-banner .bc-cta{padding:12px 24px;font-size:.9rem}}'
   ].join('');
 
   function updateCountdown() {
@@ -678,7 +679,7 @@ a[href*="amazon.it"] span:last-child {
     var sm = document.getElementById('dc-sec-cd-m'); if(sm) sm.textContent = ('0'+m).slice(-2);
   }
 
-  var bannerHTML = '<div id="dc-corso-banner">'
+  var bannerHTML = '<div id="dc-corso-banner"><div class="bc-inner">'
     + '<div class="bc-left">'
     + '<div class="bc-tag">🔒 Prezzo bloccato · Corso AI Agenti</div>'
     + '<div class="bc-tagline"><span class="bc-tl-long">Automatizza il tuo lavoro. </span><span style="white-space:nowrap"><span style="opacity:.7;font-weight:500">Il prezzo sale a</span> <strong>€997</strong> <span style="opacity:.7;font-weight:500">tra:</span></span></div>'
@@ -693,7 +694,7 @@ a[href*="amazon.it"] span:last-child {
     + '<div class="bc-cd-unit"><span class="bc-cd-num" id="dc-bc-s">00</span><span class="bc-cd-lbl">Sec</span></div>'
     + '</div>'
     + '<a href="'+CORSO_URL+'" class="bc-cta" target="_blank" rel="noopener">Scopri di più</a>'
-    + '</div>';
+    + '</div></div>';
 
   /* ── 2. SEZIONE NEL CORPO (tra Servizi e Testimonianze) ── */
   var sectionCSS = [
