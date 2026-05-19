@@ -611,9 +611,7 @@ a[href*="amazon.it"] span:last-child {
   height: 34px;
   fill: #fff;
 }
-@media(max-width:768px){
-  #whatsapp-btn{bottom:140px!important}
-}
+/* bottom whatsapp gestito da repositionWidgets() */
 </style>
 <a id="whatsapp-btn"
    href="https://api.whatsapp.com/send/?phone=393476441762&text=Salve,+vorrei+ricevere+informazioni+sui+prodotti+e+servizi+della+Davide+Caiazzo+Academy.+Quando+possiamo+sentirci%3F+Grazie&type=phone_number&app_absent=0"
@@ -778,7 +776,27 @@ a[href*="amazon.it"] span:last-child {
     /* nav rimane al suo posto */
     updateCountdown();
     setInterval(updateCountdown, 1000);
+    /* Riposiziona widget floating sopra il banner dopo il render */
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        repositionWidgets();
+      });
+    });
+    window.addEventListener('resize', repositionWidgets);
     return true;
+  }
+
+  function repositionWidgets() {
+    var banner = document.getElementById('dc-corso-banner');
+    if (!banner) return;
+    var h = banner.offsetHeight + 12;
+    var wa = document.getElementById('whatsapp-btn');
+    if (wa) wa.style.bottom = h + 'px';
+    /* chatbot — prova i selettori comuni */
+    var chat = document.getElementById('dc-chat-widget')
+      || document.querySelector('[id*="chat-widget"]')
+      || document.querySelector('[class*="chat-widget"]');
+    if (chat) chat.style.bottom = (h + 70) + 'px';
   }
 
   function injectSection() {
@@ -821,7 +839,7 @@ a[href*="amazon.it"] span:last-child {
 (function(){
   setTimeout(function(){
     var s = document.createElement('style');
-    s.textContent = '#dc-chat-widget{bottom:100px!important}@media(max-width:768px){#dc-chat-widget{display:none!important}}';
+    s.textContent = '#dc-chat-widget{bottom:100px}';
     document.head.appendChild(s);
     var w = document.createElement('script');
     w.src = 'https://dc-chatbot-vswb.onrender.com/widget.js';
