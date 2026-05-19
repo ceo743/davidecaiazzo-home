@@ -789,14 +789,15 @@ a[href*="amazon.it"] span:last-child {
   function repositionWidgets() {
     var banner = document.getElementById('dc-corso-banner');
     if (!banner) return;
-    var h = banner.offsetHeight + 12;
+    var h = banner.offsetHeight;
+    /* a cavallo del bordo superiore del banner: centro bottone (30px) sul bordo */
+    var straddleBottom = h - 30;
     var wa = document.getElementById('whatsapp-btn');
-    if (wa) wa.style.bottom = h + 'px';
-    /* chatbot — prova i selettori comuni */
+    if (wa) wa.style.bottom = straddleBottom + 'px';
     var chat = document.getElementById('dc-chat-widget')
       || document.querySelector('[id*="chat-widget"]')
       || document.querySelector('[class*="chat-widget"]');
-    if (chat) chat.style.bottom = (h + 70) + 'px';
+    if (chat) chat.style.bottom = straddleBottom + 'px';
   }
 
   function injectSection() {
