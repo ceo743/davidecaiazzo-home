@@ -612,7 +612,7 @@ a[href*="amazon.it"] span:last-child {
   fill: #fff;
 }
 @media(max-width:600px){
-  #whatsapp-btn{bottom:140px}
+  #whatsapp-btn{display:none}
 }
 </style>
 <a id="whatsapp-btn"
@@ -821,7 +821,7 @@ a[href*="amazon.it"] span:last-child {
 (function(){
   setTimeout(function(){
     var s = document.createElement('style');
-    s.textContent = '#dc-chat-widget{bottom:100px!important}@media(max-width:600px){#dc-chat-widget{bottom:220px!important}}';
+    s.textContent = '#dc-chat-widget{bottom:100px!important}@media(max-width:600px){#dc-chat-widget{display:none!important}}';
     document.head.appendChild(s);
     var w = document.createElement('script');
     w.src = 'https://dc-chatbot-vswb.onrender.com/widget.js';
