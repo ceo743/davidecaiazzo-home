@@ -738,6 +738,7 @@ a[href*="amazon.it"] span:last-child {
     + '</div>';
 
   function injectBanner() {
+    if (!bannerHTML) return true;
     if (document.getElementById('dc-corso-banner')) return true;
     /* Inserisco subito prima del carosello palchi — primo elemento dopo la hero */
     var anchor = document.getElementById('dc-palchi-section');
