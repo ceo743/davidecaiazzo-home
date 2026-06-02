@@ -678,22 +678,7 @@ a[href*="amazon.it"] span:last-child {
     var sm = document.getElementById('dc-sec-cd-m'); if(sm) sm.textContent = ('0'+m).slice(-2);
   }
 
-  var bannerHTML = '<div id="dc-corso-banner"><div class="bc-inner">'
-    + '<div class="bc-left">'
-    + '<div class="bc-tag">🔒 Prezzo bloccato · Corso AI Agenti</div>'
-    + '<div class="bc-tagline"><span class="bc-tl-long">Automatizza il tuo lavoro. </span><span style="white-space:nowrap"><span style="opacity:.7;font-weight:500">Il prezzo sale a</span> <strong>€997</strong> <span style="opacity:.7;font-weight:500">tra:</span></span></div>'
-    + '</div>'
-    + '<div class="bc-cd">'
-    + '<div class="bc-cd-unit"><span class="bc-cd-num" id="dc-bc-d">03</span><span class="bc-cd-lbl">Giorni</span></div>'
-    + '<span class="bc-cd-sep">:</span>'
-    + '<div class="bc-cd-unit"><span class="bc-cd-num" id="dc-bc-h">00</span><span class="bc-cd-lbl">Ore</span></div>'
-    + '<span class="bc-cd-sep">:</span>'
-    + '<div class="bc-cd-unit"><span class="bc-cd-num" id="dc-bc-m">00</span><span class="bc-cd-lbl">Min</span></div>'
-    + '<span class="bc-cd-sep">:</span>'
-    + '<div class="bc-cd-unit"><span class="bc-cd-num" id="dc-bc-s">00</span><span class="bc-cd-lbl">Sec</span></div>'
-    + '</div>'
-    + '<a href="'+CORSO_URL+'" class="bc-cta" target="_blank" rel="noopener">Scopri di più</a>'
-    + '</div></div>';
+  var bannerHTML = '';  /* offerta lancio scaduta il 1° giugno 2026 */
 
   /* ── 2. SEZIONE NEL CORPO (tra Servizi e Testimonianze) ── */
   var sectionCSS = [
@@ -743,17 +728,8 @@ a[href*="amazon.it"] span:last-child {
     + '</ul>'
     + '</div>'
     + '<div class="dc-corso-cta-box">'
-    + '<div class="dc-corso-urgency">⏳ Il prezzo sale il 1° giugno</div>'
-    + '<div class="dc-corso-countdown">'
-    + '<div class="dc-corso-cd-unit"><span class="dc-corso-cd-num" id="dc-sec-cd-d">3</span><span class="dc-corso-cd-label">giorni</span></div>'
-    + '<span class="dc-corso-cd-sep">:</span>'
-    + '<div class="dc-corso-cd-unit"><span class="dc-corso-cd-num" id="dc-sec-cd-h">00</span><span class="dc-corso-cd-label">ore</span></div>'
-    + '<span class="dc-corso-cd-sep">:</span>'
-    + '<div class="dc-corso-cd-unit"><span class="dc-corso-cd-num" id="dc-sec-cd-m">00</span><span class="dc-corso-cd-label">min</span></div>'
-    + '</div>'
-    + '<div class="dc-corso-price-old">€997</div>'
-    + '<div class="dc-corso-price-new">€697</div>'
-    + '<div class="dc-corso-price-note">Accesso immediato · dal 1° giugno €997</div>'
+    + '<div class="dc-corso-price-new">€997</div>'
+    + '<div class="dc-corso-price-note">Accesso immediato · pagamento unico</div>'
     + '<a href="'+CORSO_URL+'" class="dc-corso-btn" target="_blank" rel="noopener">Scopri il Corso →</a>'
     + '<div class="dc-corso-garanzia">✓ Garanzia soddisfatti o rimborsati 14gg</div>'
     + '</div>'
