@@ -126,9 +126,9 @@
       ],
       "offers": {
         "@type": "Offer",
-        "price": "397",
+        "price": "997",
         "priceCurrency": "EUR",
-        "priceValidUntil": "2026-06-30",
+        "priceValidUntil": "2027-12-31",
         "availability": "https://schema.org/InStock",
         "url": "https://corso-agenti.davidecaiazzo.it/",
         "shippingDetails": {
@@ -1187,7 +1187,6 @@ footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64p
     <div class="prod-grid">
 
       <div class="prod-card dark tilt rv">
-        <div class="prod-flag">Offerta a tempo</div>
         <p class="pc-kicker">Corso · Agenti AI e Claude Code</p>
         <h3>Corso Agenti AI</h3>
         <p class="pc-tag">Impari la logica per creare e gestire agenti che lavorano da soli</p>
@@ -1199,20 +1198,10 @@ footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64p
           <li><span><strong>Per manager, HR e consulenti</strong> che vogliono il tempo indietro</span></li>
           <li><span><strong>Garanzia 14 giorni</strong> soddisfatti o rimborsati</span></li>
         </ul>
-        <p class="offer-note">L'offerta scade tra</p>
-        <div class="countdown" id="cdCorso" aria-label="Countdown offerta corso">
-          <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-lbl">Giorni</span></div>
-          <span class="cd-sep">:</span>
-          <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-lbl">Ore</span></div>
-          <span class="cd-sep">:</span>
-          <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-lbl">Minuti</span></div>
-          <span class="cd-sep">:</span>
-          <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-lbl">Secondi</span></div>
-        </div>
         <div class="pc-foot">
-          <div class="pc-price">397€<span class="old">997€</span><small>Pagamento unico · accesso immediato</small></div>
+          <div class="pc-price">997€<small>Pagamento unico · accesso immediato</small></div>
           <div class="pc-ctas">
-            <a class="btn-primary" href="http://corso-agenti.davidecaiazzo.it/" target="_blank" rel="noopener noreferrer"><span>Acquista ora a 397€ →</span></a>
+            <a class="btn-primary" href="http://corso-agenti.davidecaiazzo.it/" target="_blank" rel="noopener noreferrer"><span>Acquista ora a 997€ →</span></a>
             <a class="btn-ghost-sm" href="https://calendly.com/dc-academy-team/consulenza-strategica-gratuita-linkedin-dc-academy?utm_source=seo&utm_campaign=calendly&utm_medium=davidecaiazzo.it&utm_content=card_corso" target="_blank" rel="noopener noreferrer">Oppure prenota una call</a>
           </div>
         </div>
@@ -1533,25 +1522,6 @@ footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64p
   });
   lb.addEventListener('click', close);
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
-})();
-
-/* ── countdown offerta corso (scade 30 giugno 2026) ── */
-(function(){
-  var DEADLINE = new Date('2026-06-30T23:59:59+02:00').getTime();
-  var d=document.getElementById('cd-d'), h=document.getElementById('cd-h'),
-      m=document.getElementById('cd-m'), s=document.getElementById('cd-s');
-  if(!d) return;
-  function pad(n){ return ('0'+n).slice(-2); }
-  function tick(){
-    var diff = DEADLINE - Date.now();
-    if(diff <= 0){ d.textContent='0'; h.textContent='00'; m.textContent='00'; s.textContent='00'; return; }
-    d.textContent = Math.floor(diff/86400000);
-    h.textContent = pad(Math.floor(diff%86400000/3600000));
-    m.textContent = pad(Math.floor(diff%3600000/60000));
-    s.textContent = pad(Math.floor(diff%60000/1000));
-  }
-  tick();
-  setInterval(tick, 1000);
 })();
 
 /* ── nav scrolled + burger + progress + parallax (video e filigrane) ── */
