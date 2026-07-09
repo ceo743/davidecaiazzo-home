@@ -565,7 +565,7 @@ section{position:relative}
 #lb{position:fixed;inset:0;z-index:9500;background:rgba(5,7,14,.95);display:none;align-items:center;justify-content:center;padding:28px;cursor:zoom-out}
 #lb.open{display:flex}
 #lb img{max-width:92vw;max-height:84vh;object-fit:contain;outline:1px solid var(--line);animation:lbIn .3s cubic-bezier(.16,1,.3,1)}
-#lb iframe{width:min(92vw,1000px);height:min(84vh,562px);border:0;background:#000;outline:1px solid var(--line);animation:lbIn .3s cubic-bezier(.16,1,.3,1);cursor:auto}
+#lb video{max-width:92vw;max-height:84vh;width:min(92vw,1100px);background:#000;outline:1px solid var(--line);animation:lbIn .3s cubic-bezier(.16,1,.3,1);cursor:auto}
 @keyframes lbIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
 #lb .cap{position:fixed;bottom:34px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--cream-70)}
 #lb .x{position:fixed;top:22px;right:30px;font-size:32px;color:var(--cream-70);cursor:pointer;line-height:1}
@@ -1048,7 +1048,7 @@ footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64p
 <!-- ── video senato ── -->
 <section class="video-feature">
   <div class="wrap vf-grid">
-    <div class="vf-media rv" id="vfSenato" role="button" tabindex="0" data-video="https://drive.google.com/file/d/1dO8MjXcpCaOlJj6oakQ7q-0GBE1sb5Z_/preview" data-label="Senato della Repubblica">
+    <div class="vf-media rv" id="vfSenato" role="button" tabindex="0" data-video="./senato-intervento-ai.mp4" data-label="Senato della Repubblica">
       <img src="./img/eventi/ev-6.jpg" alt="Davide Caiazzo parla di intelligenza artificiale al Senato della Repubblica" loading="lazy">
       <div class="vf-shade"></div>
       <div class="vf-play" aria-hidden="true"></div>
@@ -1104,7 +1104,7 @@ footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64p
 <div id="lb" role="dialog" aria-label="Immagine ingrandita">
   <span class="x" aria-label="Chiudi">✕</span>
   <img src="" alt="" aria-hidden="true">
-  <iframe src="" allow="autoplay" allowfullscreen style="display:none"></iframe>
+  <video controls playsinline style="display:none"></video>
   <div class="cap"></div>
 </div>
 
@@ -1558,23 +1558,23 @@ footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64p
 
   var lb = document.getElementById('lb');
   var lbImg = lb.querySelector('img');
-  var lbFrame = lb.querySelector('iframe');
+  var lbVideo = lb.querySelector('video');
   var lbCap = lb.querySelector('.cap');
   function open(src,label,video){
     if(video){
-      lbFrame.src = video; lbFrame.style.display='block'; lbImg.style.display='none';
+      lbVideo.src = video; lbVideo.style.display='block'; lbImg.style.display='none'; lbVideo.play();
     } else {
-      lbImg.src=src; lbImg.alt=label; lbImg.style.display='block'; lbFrame.style.display='none'; lbFrame.src='';
+      lbImg.src=src; lbImg.alt=label; lbImg.style.display='block'; lbVideo.style.display='none'; lbVideo.pause(); lbVideo.src='';
     }
     lbCap.textContent=label; lb.classList.add('open'); document.body.style.overflow='hidden';
   }
-  function close(){ lb.classList.remove('open'); document.body.style.overflow=''; lbFrame.src=''; }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow=''; lbVideo.pause(); lbVideo.src=''; }
   document.querySelectorAll('.palco').forEach(function(p){
     if(p.getAttribute('aria-hidden')==='true') return;
     p.addEventListener('click', function(){ open(this.dataset.img, this.dataset.label, this.dataset.video); });
     p.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(this.dataset.img, this.dataset.label, this.dataset.video); } });
   });
-  lb.addEventListener('click', function(e){ if(e.target===lbFrame) return; close(); });
+  lb.addEventListener('click', function(e){ if(e.target===lbVideo) return; close(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
 
   var vfSenato = document.getElementById('vfSenato');
