@@ -448,6 +448,27 @@ nav.dc-nav.scrolled{background:rgba(5,7,14,.92);backdrop-filter:blur(18px);-webk
   padding:5px 14px;z-index:12;
 }
 
+/* ── video senato (feature) ── */
+.video-feature{background:var(--navy);border-bottom:1px solid var(--line);padding:clamp(56px,7vw,90px) 0}
+.vf-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(32px,5vw,64px);align-items:center}
+.vf-media{position:relative;aspect-ratio:16/10;overflow:hidden;cursor:pointer;outline:1px solid var(--line);outline-offset:-1px;transition:outline-color .4s}
+.vf-media:hover{outline-color:rgba(255,61,46,.7)}
+.vf-media img{width:100%;height:100%;object-fit:cover;filter:grayscale(.35) contrast(1.04);transition:filter .5s,transform .8s cubic-bezier(.16,1,.3,1)}
+.vf-media:hover img{filter:grayscale(0);transform:scale(1.05)}
+.vf-media .vf-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,14,.15),rgba(5,7,14,.65))}
+.vf-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:clamp(64px,7vw,92px);height:clamp(64px,7vw,92px);border-radius:50%;background:var(--verm);display:flex;align-items:center;justify-content:center;transition:transform .35s,box-shadow .35s;box-shadow:0 0 0 0 rgba(255,61,46,.5)}
+.vf-media:hover .vf-play{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 0 16px rgba(255,61,46,0)}
+.vf-play::before{content:"";border-style:solid;border-width:12px 0 12px 19px;border-color:transparent transparent transparent var(--navy);margin-left:5px}
+.vf-tag{position:absolute;left:20px;bottom:18px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cream)}
+.vf-copy p.sec-label{margin-bottom:14px}
+.vf-title{font-family:var(--display);font-size:clamp(28px,3.4vw,48px);line-height:1.08;color:var(--cream);text-transform:uppercase;letter-spacing:.01em}
+.vf-title em{color:var(--verm);font-style:normal}
+.vf-sub{margin-top:20px;font-size:clamp(15px,1.3vw,17px);line-height:1.7;color:var(--cream-70);max-width:46ch}
+.vf-cta{margin-top:28px;display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--verm);cursor:pointer}
+.vf-cta::after{content:"→";transition:transform .3s}
+.vf-media:hover ~ .vf-copy .vf-cta::after,.vf-cta:hover::after{transform:translateX(6px)}
+@media(max-width:860px){.vf-grid{grid-template-columns:1fr}}
+
 /* ── marquee divisore ── */
 .divider-marquee{
   overflow:hidden;border-bottom:1px solid var(--line);background:var(--navy-2);padding:16px 0;position:relative;z-index:2;
@@ -1024,6 +1045,24 @@ footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64p
   </div>
 </div>
 
+<!-- ── video senato ── -->
+<section class="video-feature">
+  <div class="wrap vf-grid">
+    <div class="vf-media rv" id="vfSenato" role="button" tabindex="0" data-video="https://drive.google.com/file/d/1dO8MjXcpCaOlJj6oakQ7q-0GBE1sb5Z_/preview" data-label="Senato della Repubblica">
+      <img src="./img/eventi/ev-6.jpg" alt="Davide Caiazzo parla di intelligenza artificiale al Senato della Repubblica" loading="lazy">
+      <div class="vf-shade"></div>
+      <div class="vf-play" aria-hidden="true"></div>
+      <div class="vf-tag">Senato della Repubblica · 8 Luglio 2026</div>
+    </div>
+    <div class="vf-copy rv">
+      <p class="sec-label">Guarda il video</p>
+      <h2 class="vf-title">Ho parlato di <em>intelligenza artificiale</em> al Senato della Repubblica</h2>
+      <p class="vf-sub">Invitato a portare la mia esperienza sull'intelligenza artificiale applicata al lavoro davanti alle istituzioni. Il video integrale dell'intervento.</p>
+      <span class="vf-cta" onclick="document.getElementById('vfSenato').click()">Guarda il video</span>
+    </div>
+  </div>
+</section>
+
 <!-- ── credenziali ── -->
 <section class="creds" id="credenziali">
   <div class="wrap">
@@ -1537,6 +1576,12 @@ footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64p
   });
   lb.addEventListener('click', function(e){ if(e.target===lbFrame) return; close(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+
+  var vfSenato = document.getElementById('vfSenato');
+  if(vfSenato){
+    vfSenato.addEventListener('click', function(){ open(this.querySelector('img').src, this.dataset.label, this.dataset.video); });
+    vfSenato.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); this.click(); } });
+  }
 })();
 
 /* ── nav scrolled + burger + progress + parallax (video e filigrane) ── */
