@@ -67,7 +67,7 @@
         (/^_ga(?:_|$)/.test(name) || name === '_gid' || /^_gat(?:_|$)/.test(name));
       var ads = lost.indexOf('targeting') !== -1 &&
         (name === '_fbp' || name === '_fbc' || name === '_gcl_au' ||
-          /^rl_(session|anonymous_id|page_init_referrer)$/.test(name));
+          /^rl_(session|anonymous_id|page_init_referrer|page_init_referring_domain)$/.test(name));
       if (!analytics && !ads) return;
       paths().forEach(function (path) {
         domains.forEach(function (domain) {
