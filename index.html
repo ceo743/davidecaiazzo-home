@@ -238,6 +238,98 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script type="text/javascript" async charset="UTF-8" src="//cdn.cookie-script.com/s/5b24cef87a160ab3ee3c8e35c1c61ff9.js"></script>
+<script>
+/* Interfaccia CookieScript per davidecaiazzo.it e pagine Kajabi DC Academy.
+   Non cambia lo stato del consenso: usa solo CookieScript.instance.show(). */
+(function () {
+  'use strict';
+
+  var POLICY_URL = 'https://docs.google.com/document/d/1PTTs2QFMqBtZaefLHPrrfMxJRnlGewih/edit';
+  var DESCRIPTION = 'Questo sito usa cookie. Puoi accettare o rifiutare quelli facoltativi, oppure scegliere le categorie nelle preferenze.';
+  var scheduled = false;
+
+  function cookieScriptReady() {
+    return window.CookieScript && window.CookieScript.instance &&
+      typeof window.CookieScript.instance.show === 'function';
+  }
+
+  function showPreferences(attempt) {
+    if (cookieScriptReady()) {
+      window.CookieScript.instance.show();
+    } else if (attempt < 40) {
+      window.setTimeout(function () { showPreferences(attempt + 1); }, 250);
+    }
+  }
+
+  function patchBanner() {
+    var description = document.querySelector('#cookiescript_description [data-cs-desc-box="true"]');
+    if (description) {
+      if (description.textContent.trim() !== DESCRIPTION) description.textContent = DESCRIPTION;
+      if (description.getAttribute('data-cs-i18n-read') !== DESCRIPTION) {
+        description.setAttribute('data-cs-i18n-read', DESCRIPTION);
+      }
+    }
+
+    // Il link è fratello del testo: non sostituire l'HTML del contenitore.
+    var readMore = document.getElementById('cookiescript_readmore');
+    if (readMore) {
+      if (readMore.getAttribute('href') !== POLICY_URL) readMore.setAttribute('href', POLICY_URL);
+      if (readMore.getAttribute('data-cs-i18n-url') !== JSON.stringify({ it: POLICY_URL })) {
+        readMore.setAttribute('data-cs-i18n-url', JSON.stringify({ it: POLICY_URL }));
+      }
+      if (readMore.textContent.trim() !== 'Informativa cookie') readMore.textContent = 'Informativa cookie';
+      readMore.setAttribute('target', '_blank');
+      readMore.setAttribute('rel', 'noopener noreferrer');
+      readMore.setAttribute('aria-label', 'Apri l’informativa cookie in una nuova finestra');
+    }
+  }
+
+  function ensurePreferencesButton() {
+    if (document.getElementById('dc-cookie-preferences')) return;
+    if (!document.querySelector('script[src*="cdn.cookie-script.com/s/"]') && !window.CookieScript) return;
+
+    var legalLinks = document.querySelector('.foot-bar .legal-links');
+    var button = document.createElement('button');
+    button.id = 'dc-cookie-preferences';
+    button.type = 'button';
+    button.textContent = 'Preferenze cookie';
+    button.setAttribute('aria-label', 'Apri le preferenze cookie');
+    button.style.cssText = legalLinks
+      ? 'background:none;border:0;color:var(--cream-70,#fcfbf6);cursor:pointer;font:inherit;letter-spacing:inherit;padding:0;text-decoration:underline'
+      : 'position:fixed;bottom:16px;left:16px;z-index:2147483646;background:#111;color:#fff;border:1px solid #fff;border-radius:6px;cursor:pointer;font:14px sans-serif;padding:8px 12px';
+    button.addEventListener('click', function () { showPreferences(0); });
+    (legalLinks || document.body).appendChild(button);
+  }
+
+  function apply() {
+    patchBanner();
+    ensurePreferencesButton();
+  }
+
+  function scheduleApply() {
+    if (scheduled) return;
+    scheduled = true;
+    window.setTimeout(function () {
+      scheduled = false;
+      apply();
+    }, 0);
+  }
+
+  function start() {
+    apply();
+    // CookieScript è asincrono e può ricreare il banner dopo una scelta.
+    new MutationObserver(scheduleApply).observe(document.documentElement, {
+      childList: true,
+      attributes: true,
+      attributeFilter: ['href', 'data-cs-i18n-url'],
+      subtree: true
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
+})();
+</script>
 
 <style>
 /* ════════════════════════════════════════════════════════════════
