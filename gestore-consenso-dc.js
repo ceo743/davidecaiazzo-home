@@ -63,8 +63,11 @@
     var domains = ['', host, '.' + host, 'davidecaiazzo.it', '.davidecaiazzo.it'];
     document.cookie.split(';').forEach(function (item) {
       var name = item.trim().split('=')[0];
-      var analytics = lost.indexOf('performance') !== -1 && /^_ga(?:_|$)/.test(name);
-      var ads = lost.indexOf('targeting') !== -1 && (name === '_fbp' || name === '_fbc');
+      var analytics = lost.indexOf('performance') !== -1 &&
+        (/^_ga(?:_|$)/.test(name) || name === '_gid' || /^_gat(?:_|$)/.test(name));
+      var ads = lost.indexOf('targeting') !== -1 &&
+        (name === '_fbp' || name === '_fbc' || name === '_gcl_au' ||
+          /^rl_(session|anonymous_id|page_init_referrer)$/.test(name));
       if (!analytics && !ads) return;
       paths().forEach(function (path) {
         domains.forEach(function (domain) {
@@ -163,7 +166,7 @@
   function render() {
     if (document.getElementById('dc-consent-banner')) return;
     var style = element('style');
-    style.textContent = '#dc-consent-banner{position:fixed;inset:auto 16px 16px;max-width:680px;margin:auto;z-index:2147483647;background:#101c32;color:#fff;border:1px solid #64748b;border-radius:12px;box-shadow:0 12px 40px #0006;padding:18px;font:15px/1.45 system-ui,sans-serif}#dc-consent-banner[hidden],#dc-consent-panel[hidden],#dc-consent-preferences[hidden]{display:none!important}#dc-consent-banner p{margin:0 0 12px}#dc-consent-banner a{color:#fff;text-decoration:underline}#dc-consent-banner .dc-consent-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}#dc-consent-banner button{background:transparent;color:#fff;border:1px solid #fff;border-radius:7px;padding:9px 14px;font:inherit;cursor:pointer;min-width:120px}#dc-consent-banner button.dc-primary{background:#fff;color:#101c32}#dc-consent-panel{border-top:1px solid #64748b;margin-top:14px;padding-top:12px}#dc-consent-panel label{display:block;margin:9px 0}#dc-consent-error{color:#ffd6a5;margin-top:8px}#dc-consent-preferences{position:fixed;left:16px;bottom:16px;z-index:2147483646;background:#101c32;color:#fff;border:1px solid #fff;border-radius:7px;padding:8px 12px;font:14px system-ui,sans-serif;cursor:pointer}';
+    style.textContent = '#dc-consent-banner{position:fixed;inset:auto 16px var(--dc-consent-bottom,16px);max-width:680px;margin:auto;z-index:2147483647;background:#101c32;color:#fff;border:1px solid #64748b;border-radius:12px;box-shadow:0 12px 40px #0006;padding:18px;font:15px/1.45 system-ui,sans-serif}#dc-consent-banner[hidden],#dc-consent-panel[hidden],#dc-consent-preferences[hidden]{display:none!important}#dc-consent-banner p{margin:0 0 12px}#dc-consent-banner a{color:#fff;text-decoration:underline}#dc-consent-banner .dc-consent-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}#dc-consent-banner button{background:transparent;color:#fff;border:1px solid #fff;border-radius:7px;padding:9px 14px;font:inherit;cursor:pointer;min-width:120px}#dc-consent-banner button.dc-primary{background:#fff;color:#101c32}#dc-consent-panel{border-top:1px solid #64748b;margin-top:14px;padding-top:12px}#dc-consent-panel label{display:block;margin:9px 0}#dc-consent-error{color:#ffd6a5;margin-top:8px}#dc-consent-preferences{position:fixed;left:16px;bottom:var(--dc-consent-bottom,16px);z-index:2147483646;background:#101c32;color:#fff;border:1px solid #fff;border-radius:7px;padding:8px 12px;font:14px system-ui,sans-serif;cursor:pointer}';
     document.head.appendChild(style);
 
     var banner = element('section');
@@ -229,6 +232,9 @@
   }
 
   function start() {
+    clearKnownOptionalCookies(['performance', 'targeting'].filter(function (category) {
+      return !state || !state[category];
+    }));
     render();
     loadAllowedScripts();
   }
