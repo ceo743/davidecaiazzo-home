@@ -843,6 +843,20 @@ section{position:relative}
 .social-card:hover svg{fill:var(--verm)}
 .social-card span{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--cream)}
 
+/* ── certificazioni ISO (22/10/2026) ── */
+.iso-strip{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:16px 24px;align-items:center;margin-top:clamp(28px,4vw,44px)}
+.iso-badge{display:flex;align-items:center;gap:14px;padding:14px 20px 14px 16px;border:1px solid var(--line);background:var(--navy-2)}
+.iso-badge svg{flex:none;width:34px;height:34px;fill:var(--verm-soft);stroke:var(--verm);stroke-width:1.5;stroke-linejoin:round}
+.iso-badge svg .ck{fill:none;stroke-linecap:round}
+.iso-badge b{display:block;font-family:var(--mono);font-size:14px;letter-spacing:.06em;color:var(--cream)}
+.iso-badge span{display:block;font-size:13px;color:var(--cream-70);margin-top:2px}
+.iso-badge small{display:block;font-family:var(--mono);font-size:11px;color:var(--cream-50);margin-top:3px;letter-spacing:.04em}
+.iso-note{font-size:13px;line-height:1.7;color:var(--cream-50)}
+.iso-note a{color:var(--cream);text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:4px 0}
+.iso-note a:hover{color:var(--verm)}
+footer .iso-strip{margin:0 0 clamp(40px,5vw,64px);padding-top:clamp(28px,4vw,40px);border-top:1px solid var(--line)}
+@media(max-width:900px){.iso-strip{grid-template-columns:1fr 1fr}.iso-note{grid-column:1/-1}}
+@media(max-width:560px){.iso-strip{grid-template-columns:1fr}}
 /* ── footer ── */
 footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64px,8vw,100px) 0 0;overflow:hidden}
 .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:clamp(28px,4vw,60px);padding-bottom:clamp(48px,6vw,80px)}
@@ -1076,6 +1090,11 @@ footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64p
       <div class="cred rv rv-d1"><div class="cred-num"><span class="count" data-to="7">0</span></div><div class="cred-lbl">Aziende fondate</div></div>
       <div class="cred rv rv-d2"><div class="cred-num"><span class="count" data-to="500">0</span><span class="sfx">+</span></div><div class="cred-lbl">Recensioni</div></div>
       <div class="cred rv rv-d3"><div class="cred-num"><span class="count" data-to="2">0</span><span class="sfx">x</span></div><div class="cred-lbl">TEDx Speaker</div></div>
+    </div>
+    <div class="iso-strip rv" aria-label="Certificazioni ISO di DC Academy">
+      <div class="iso-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path class="ck" d="m8.5 12 2.5 2.5 4.5-5"/></svg><div><b>ISO 9001:2015</b><span>Gestione della qualità</span><small>Cert. n. 093AGID080201</small></div></div>
+      <div class="iso-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path class="ck" d="m8.5 12 2.5 2.5 4.5-5"/></svg><div><b>ISO/IEC 27001:2022</b><span>Sicurezza delle informazioni</span><small>Cert. n. 093AGID080204</small></div></div>
+      <p class="iso-note">DC Academy S.r.l. è certificata per progettazione, sviluppo e gestione di software, soluzioni di intelligenza artificiale e piattaforme SaaS. Certificati rilasciati da Accurate Global, validi fino al 18/10/2029. <a href="https://www.iafcertsearch.org/certified-entity/TkE8oEDYWFEBdfgnYbQXMnxR" target="_blank" rel="noopener noreferrer">Verifica su IAF CertSearch</a></p>
     </div>
   </div>
 </section>
@@ -1444,6 +1463,13 @@ footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64p
       <a href="https://www.instagram.com/davidecaiazzo_official/" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="https://www.youtube.com/@DavideCaiazzo?sub_confirmation=1" target="_blank" rel="noopener noreferrer">YouTube</a>
       <a href="https://www.davidecaiazzo.it/login" target="_blank" rel="noopener noreferrer">Area Membri</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="iso-strip" aria-label="Certificazioni ISO di DC Academy">
+      <div class="iso-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path class="ck" d="m8.5 12 2.5 2.5 4.5-5"/></svg><div><b>ISO 9001:2015</b><span>Gestione della qualità</span><small>Cert. n. 093AGID080201</small></div></div>
+      <div class="iso-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path class="ck" d="m8.5 12 2.5 2.5 4.5-5"/></svg><div><b>ISO/IEC 27001:2022</b><span>Sicurezza delle informazioni</span><small>Cert. n. 093AGID080204</small></div></div>
+      <p class="iso-note">DC Academy S.r.l. è certificata per progettazione, sviluppo e gestione di software, soluzioni di intelligenza artificiale e piattaforme SaaS. Certificati rilasciati da Accurate Global, validi fino al 18/10/2029. <a href="https://www.iafcertsearch.org/certified-entity/TkE8oEDYWFEBdfgnYbQXMnxR" target="_blank" rel="noopener noreferrer">Verifica su IAF CertSearch</a></p>
     </div>
   </div>
   <div class="foot-mega" aria-hidden="true">Davide Caiazzo</div>
