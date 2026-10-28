@@ -865,6 +865,9 @@ footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64p
 .foot-col .foot-h{font-family:var(--mono);font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--verm);margin-bottom:20px;font-weight:700}
 .foot-col a{display:block;font-size:14.5px;color:var(--cream-70);text-decoration:none;padding:6px 0;transition:color .25s,padding-left .25s}
 .foot-col a:hover{color:var(--cream);padding-left:6px}
+.foot-ai{padding-bottom:clamp(36px,5vw,64px)}
+.foot-ai-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,4vw,60px)}
+@media(max-width:560px){.foot-ai-grid{grid-template-columns:1fr}}
 .foot-mega{
   font-family:var(--display);font-size:clamp(60px,11.5vw,190px);text-transform:uppercase;line-height:.85;
   text-align:center;color:transparent;-webkit-text-stroke:1px rgba(252,251,246,.12);
@@ -1465,6 +1468,20 @@ footer{background:var(--navy);border-top:1px solid var(--line);padding:clamp(64p
       <a href="https://www.davidecaiazzo.it/login" target="_blank" rel="noopener noreferrer">Area Membri</a>
     </div>
   </div>
+  <!-- Commercialista AI e guide per gli studi (SEO, 28/10/2026): link testuali al programma e al blog studiocommercialista.ai -->
+  <nav class="wrap foot-ai foot-col" aria-label="Intelligenza artificiale per commercialisti">
+    <p class="foot-h">Intelligenza artificiale per commercialisti</p>
+    <div class="foot-ai-grid">
+      <a href="https://commercialista-ai.davidecaiazzo.it/">Commercialista AI, il software AI per studi di commercialisti</a>
+      <a href="https://studiocommercialista.ai/">Studio Commercialista AI: guide per gli studi di commercialisti</a>
+      <a href="https://studiocommercialista.ai/migliori-software-ai-commercialisti/">I migliori software AI per commercialisti a confronto</a>
+      <a href="https://studiocommercialista.ai/software-ai-per-commercialisti/">Software AI per commercialisti: cosa automatizza e come sceglierlo</a>
+      <a href="https://studiocommercialista.ai/agenti-ai-per-commercialisti/">Agenti AI per commercialisti: cosa fanno e quali controlli servono</a>
+      <a href="https://studiocommercialista.ai/alternative-sibill-commercialisti/">Alternative a Sibill per lo studio del commercialista</a>
+      <a href="https://studiocommercialista.ai/commercialista-ai-vs-teamsystem-studio-ai/">Commercialista AI e TeamSystem Studio AI: le differenze</a>
+      <a href="https://studiocommercialista.ai/commercialista-ai-vs-genya/">Commercialista AI e Genya Expert AI: le differenze</a>
+    </div>
+  </nav>
   <div class="wrap">
     <div class="iso-strip" aria-label="Certificazioni ISO di DC Academy">
       <div class="iso-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path class="ck" d="m8.5 12 2.5 2.5 4.5-5"/></svg><div><b>ISO 9001:2015</b><span>Gestione della qualità</span><small>Cert. n. 093AGID080201</small></div></div>
